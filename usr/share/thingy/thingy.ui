@@ -75,6 +75,7 @@
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="halign">center</property>
                 <property name="valign">center</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">12</property>
@@ -84,13 +85,18 @@
                     <property name="can_focus">False</property>
                     <property name="halign">center</property>
                     <property name="valign">center</property>
-                    <property name="spacing">12</property>
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">25</property>
                     <child>
                       <object class="GtkImage">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="pixel_size">96</property>
                         <property name="icon_name">emblem-documents-symbolic</property>
                         <property name="icon_size">6</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -102,16 +108,35 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">No recent documents</property>
+                        <property name="label" translatable="yes">No documents found</property>
                         <attributes>
                           <attribute name="weight" value="bold"/>
-                          <attribute name="scale" value="1"/>
+                          <attribute name="scale" value="1.2"/>
                         </attributes>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
                         <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">You can add documents by opening them or by marking them as favorites</property>
+                        <property name="wrap">True</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-12 14:19+0000\n"
+"POT-Creation-Date: 2021-11-12 14:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,5 +35,9 @@ msgid "Recent and favorite documents"
 msgstr ""
 
 #: usr/share/thingy/thingy.ui.h:3
-msgid "No recent documents"
+msgid "No documents found"
+msgstr ""
+
+#: usr/share/thingy/thingy.ui.h:4
+msgid "You can add documents by opening them or by marking them as favorites"
 msgstr ""

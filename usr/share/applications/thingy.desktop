@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Library
+Comment=Recent and favorite documents
+Exec=thingy
+Icon=thingy
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=GTK;Office;
+Keywords=files;collection;documents;recent;favorite
+StartupNotify=false

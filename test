@@ -1,0 +1,5 @@
+#!/bin/bash
+sudo rm -rf /usr/lib/thingy
+sudo rm -rf /usr/share/thingy
+sudo cp -R usr /
+thingy

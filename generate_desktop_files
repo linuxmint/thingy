@@ -1,0 +1,25 @@
+#!/usr/bin/python3
+
+DOMAIN = "thingy"
+PATH = "/usr/share/locale"
+
+import os
+import gettext
+from mintcommon import additionalfiles
+
+os.environ['LANGUAGE'] = "en_US.UTF-8"
+gettext.install(DOMAIN, PATH)
+
+prefix = "[Desktop Entry]\n"
+
+suffix = """Exec=thingy
+Icon=thingy
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=GTK;Office;
+Keywords=files;collection;documents;recent;favorite
+StartupNotify=false
+"""
+
+additionalfiles.generate(DOMAIN, PATH, "usr/share/applications/thingy.desktop", prefix, _("Library"), _("Recent and favorite documents"), suffix)

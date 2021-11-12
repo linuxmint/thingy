@@ -1,0 +1,4 @@
+#!/bin/bash
+intltool-extract --type=gettext/glade usr/share/thingy/thingy.ui
+xgettext --language=Python --keyword=_ --keyword=N_ --output=thingy.pot usr/lib/thingy/*.py generate_desktop_files usr/share/thingy/thingy.ui.h
+rm -f usr/share/thingy/*.ui.h

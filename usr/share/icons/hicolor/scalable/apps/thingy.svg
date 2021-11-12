@@ -363,7 +363,7 @@
     </linearGradient>
     <linearGradient
        inkscape:collect="always"
-       xlink:href="#outerBackgroundGradient-1"
+       xlink:href="#linearGradient4436"
        id="linearGradient7328"
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(0,-0.39261645,0.39261645,0,-13.24816,104.53677)"
@@ -421,6 +421,17 @@
          style="stop-color:#6d66b2;stop-opacity:1"
          offset="1"
          id="stop3866-9-1-46" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4436">
+      <stop
+         id="stop4438"
+         offset="0"
+         style="stop-color:#cc0000;stop-opacity:1" />
+      <stop
+         id="stop4440"
+         offset="1"
+         style="stop-color:#ea6363;stop-opacity:1" />
     </linearGradient>
   </defs>
   <path

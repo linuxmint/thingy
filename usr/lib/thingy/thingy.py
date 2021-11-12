@@ -8,7 +8,7 @@ import subprocess
 import threading
 gi.require_version('Gtk', '3.0')
 gi.require_version('XApp', '1.0')
-from gi.repository import Gtk, Gio, GLib, XApp, Pango, GdkPixbuf
+from gi.repository import Gtk, Gio, GLib, XApp, Pango, GdkPixbuf, Gdk
 
 setproctitle.setproctitle("thingy")
 
@@ -96,6 +96,20 @@ class Window():
 
         self.flowbox = self.builder.get_object("flowbox")
 
+        # Preserve window state
+        self.width = self.settings.get_int("width")
+        self.height = self.settings.get_int("height")
+        self.maximized = self.settings.get_boolean("maximized")
+        self.window.resize(self.width, self.height)
+        if self.maximized:
+            self.window.maximize()
+        else:
+            self.window.resize(self.width, self.height)
+
+        self.window.connect("size-allocate", self.on_window_resized)
+        self.window.connect("window-state-event", self.on_window_state_changed)
+        self.window.connect("destroy", self.on_window_destroyed)
+
         # Load data
         app_mime_types = XREADER_MIME_TYPES
         for app_info in Gio.AppInfo.get_all():
@@ -105,6 +119,17 @@ class Window():
         self.documents = []
         self.load_documents(app_mime_types)
 
+    def on_window_resized(self, window, allocation):
+        self.width = allocation.width
+        self.height = allocation.height
+
+    def on_window_state_changed(self, window, event):
+        self.maximized = window.get_window().get_state() & Gdk.WindowState.MAXIMIZED == Gdk.WindowState.MAXIMIZED
+
+    def on_window_destroyed(self, window):
+        self.settings.set_int("width", self.width)
+        self.settings.set_int("height", self.height)
+        self.settings.set_boolean("maximized", self.maximized)
 
     def open_about(self, widget):
         dlg = Gtk.AboutDialog()

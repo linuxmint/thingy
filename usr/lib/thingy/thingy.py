@@ -66,6 +66,9 @@ class Window():
         self.application = application
         self.settings = Gio.Settings(schema_id="org.x.thingy")
 
+        self.recent_manager = Gtk.RecentManager()
+        self.favorites_manager = XApp.Favorites.get_default()
+
         # Set the Glade file
         gladefile = "/usr/share/thingy/thingy.ui"
         self.builder = Gtk.Builder()
@@ -111,13 +114,15 @@ class Window():
         self.window.connect("destroy", self.on_window_destroyed)
 
         # Load data
-        app_mime_types = XREADER_MIME_TYPES
+        self.app_mime_types = XREADER_MIME_TYPES
         for app_info in Gio.AppInfo.get_all():
             if app_info.get_filename() == "/usr/share/applications/xreader.desktop":
-                app_mime_types = app_info.get_supported_types()
+                self.app_mime_types = app_info.get_supported_types()
 
-        self.documents = []
-        self.load_documents(app_mime_types)
+        self.load_documents()
+
+        self.recent_manager.connect("changed", self.load_documents)
+        self.favorites_manager.connect("changed", self.load_documents)
 
     def on_window_resized(self, window, allocation):
         self.width = allocation.width
@@ -162,12 +167,14 @@ class Window():
         self.application.quit()
 
     @_async
-    def load_documents(self, app_mime_types):
+    def load_documents(self, data=None):
+        self.documents = []
+        self.clear_flowbox()
+
         # Favorites
-        favorites_manager = XApp.Favorites.get_default()
-        items = favorites_manager.get_favorites(None)
+        items = self.favorites_manager.get_favorites(None)
         for item in items:
-            if item.cached_mimetype in app_mime_types:
+            if item.cached_mimetype in self.app_mime_types:
                 uri = item.uri
                 f = Gio.File.new_for_uri(uri)
                 if f.is_native() and os.path.exists(f.get_path()):
@@ -176,8 +183,8 @@ class Window():
 
         # Recent
         documents = []
-        for recent in Gtk.RecentManager().get_items():
-            if recent.get_mime_type() in app_mime_types:
+        for recent in self.recent_manager.get_items():
+            if recent.get_mime_type() in self.app_mime_types:
                 documents.append(recent)
         documents = sorted(documents, key=lambda x: x.get_modified(), reverse=True)
         for item in documents:
@@ -195,6 +202,11 @@ class Window():
             self.builder.get_object("stack").set_visible_child_name("page_documents")
         else:
             self.builder.get_object("stack").set_visible_child_name("page_empty")
+
+    @idle
+    def clear_flowbox(self):
+        for child in self.flowbox.get_children():
+            self.flowbox.remove(child)
 
     @idle
     def add_document_to_library(self, info, path, mark_as_favorite):

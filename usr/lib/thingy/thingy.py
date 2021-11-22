@@ -213,7 +213,7 @@ class Window():
         button.add(box)
         button.set_relief(Gtk.ReliefStyle.NONE)
         button.set_tooltip_text(name)
-        button.connect("clicked", self.open_document, path)
+        button.connect("button-press-event", self.on_button_pressed, path)
         label = Gtk.Label(label=name)
         label.set_max_width_chars(25)
         label.set_ellipsize(Pango.EllipsizeMode.END)
@@ -264,8 +264,55 @@ class Window():
         self.flowbox.add(button)
         button.show_all()
 
+    def on_button_pressed(self, widget, event, path):
+        if event.button == 1:
+            self.open_document(widget, path)
+        elif event.button == 3:
+            menu = Gtk.Menu()
+            item = Gtk.MenuItem.new_with_label(_("Open"))
+            item.connect("activate", self.open_document, path)
+            menu.add(item)
+            item = Gtk.MenuItem.new_with_label(_("Open containing folder"))
+            item.connect("activate", self.open_containing_folder, path)
+            menu.add(item)
+            menu.show_all()
+            menu.popup_at_pointer()
+
+
     def open_document(self, widget, path):
         subprocess.Popen(["xreader", path])
+
+    @_async
+    def open_containing_folder(self, item, path):
+        bus = Gio.Application.get_default().get_dbus_connection()
+
+        if os.path.isfile(path):
+            file = Gio.File.new_for_path(path)
+            startup_id = str(os.getpid())
+
+            try:
+                bus.call_sync("org.freedesktop.FileManager1",
+                              "/org/freedesktop/FileManager1",
+                              "org.freedesktop.FileManager1",
+                              "ShowItems",
+                              GLib.Variant("(ass)",
+                                           ([file.get_uri()], startup_id)),
+                              None,
+                              Gio.DBusCallFlags.NONE,
+                              1000,
+                              None)
+                print("Opening containing folder using dbus")
+                return
+            except GLib.Error as e:
+                pass
+
+        app = Gio.AppInfo.get_default_for_type("inode/directory", True)
+
+        try:
+            print("Opening containing folder using Gio (mimetype)")
+            Gio.AppInfo.launch_default_for_uri(prefs.get_save_uri(), None)
+        except GLib.Error as e:
+            print("Could not open containing folder: %s" % e.message)
 
 
 if __name__ == "__main__":

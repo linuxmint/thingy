@@ -179,7 +179,7 @@ class Window():
                 f = Gio.File.new_for_uri(uri)
                 if f.is_native() and os.path.exists(f.get_path()):
                     info = f.query_info('*', Gio.FileQueryInfoFlags.NONE, None)
-                    self.add_document_to_library(info, f.get_path(), True)
+                    self.add_document_to_library(info, uri, True)
 
         # Recent
         documents = []
@@ -192,7 +192,7 @@ class Window():
             if item.is_local() and item.exists():
                 f = Gio.File.new_for_uri(uri)
                 info = f.query_info('*', Gio.FileQueryInfoFlags.NONE, None)
-                self.add_document_to_library(info, f.get_path(), False)
+                self.add_document_to_library(info, uri, False)
 
         self.set_stack_page()
 
@@ -209,10 +209,10 @@ class Window():
             self.flowbox.remove(child)
 
     @idle
-    def add_document_to_library(self, info, path, mark_as_favorite):
-        if path in self.documents:
+    def add_document_to_library(self, info, uri, mark_as_favorite):
+        if uri in self.documents:
             return
-        self.documents.append(path)
+        self.documents.append(uri)
         name = info.get_display_name()
         thumbnail_path = info.get_attribute_byte_string ("thumbnail::path")
         icon = info.get_attribute_object("standard::icon")
@@ -225,7 +225,7 @@ class Window():
         button.add(box)
         button.set_relief(Gtk.ReliefStyle.NONE)
         button.set_tooltip_text(name)
-        button.connect("button-press-event", self.on_button_pressed, path)
+        button.connect("button-press-event", self.on_button_pressed, uri, mark_as_favorite)
         label = Gtk.Label(label=name)
         label.set_max_width_chars(25)
         label.set_ellipsize(Pango.EllipsizeMode.END)
@@ -254,7 +254,7 @@ class Window():
         if thumbnail_path != None:
             image = Gtk.Image.new_from_file(thumbnail_path)
         else:
-            extension = os.path.splitext(path)[1][1:].strip().lower()
+            extension = os.path.splitext(uri)[1][1:].strip().lower()
             if os.path.exists("/usr/share/thingy/doc-%s.svg" % extension):
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size("/usr/share/thingy/doc-%s.svg" % extension, 198, 256)
             else:
@@ -276,30 +276,58 @@ class Window():
         self.flowbox.add(button)
         button.show_all()
 
-    def on_button_pressed(self, widget, event, path):
+    def on_button_pressed(self, widget, event, uri, is_favorite):
         if event.button == 1:
-            self.open_document(widget, path)
+            self.open_document(widget, uri)
         elif event.button == 3:
             menu = Gtk.Menu()
             item = Gtk.MenuItem.new_with_label(_("Open"))
-            item.connect("activate", self.open_document, path)
+            item.connect("activate", self.open_document, uri)
             menu.add(item)
             item = Gtk.MenuItem.new_with_label(_("Open containing folder"))
-            item.connect("activate", self.open_containing_folder, path)
+            item.connect("activate", self.open_containing_folder, uri)
+            menu.add(item)
+            menu.add(Gtk.SeparatorMenuItem())
+            if is_favorite:
+                item = Gtk.MenuItem.new_with_label(_("Remove from favorites"))
+                item.connect("activate", self.remove_favorite, uri)
+            else:
+                item = Gtk.MenuItem.new_with_label(_("Add to favorites"))
+                item.connect("activate", self.add_favorite, uri)
+            menu.add(item)
+            menu.add(Gtk.SeparatorMenuItem())
+            item = Gtk.MenuItem.new_with_label(_("Move to trash"))
+            item.connect("activate", self.trash, uri)
             menu.add(item)
             menu.show_all()
             menu.popup_at_pointer()
 
-
-    def open_document(self, widget, path):
-        subprocess.Popen(["xreader", path])
+    @_async
+    def trash(self, item, uri):
+        subprocess.call(["gio", "trash", uri])
+        self.load_documents()
 
     @_async
-    def open_containing_folder(self, item, path):
-        bus = Gio.Application.get_default().get_dbus_connection()
+    def add_favorite(self, item, uri):
+        try:
+            self.favorites_manager.add(uri)
+        except Exception as e:
+            print(e)
 
-        if os.path.isfile(path):
-            file = Gio.File.new_for_path(path)
+    @_async
+    def remove_favorite(self, item, uri):
+        self.favorites_manager.remove(uri)
+
+    @_async
+    def open_document(self, item, uri):
+        subprocess.Popen(["xreader", uri])
+
+    @_async
+    def open_containing_folder(self, item, uri):
+        bus = Gio.Application.get_default().get_dbus_connection()
+        file = Gio.File.new_for_uri(uri)
+
+        if file.query_exists():
             startup_id = str(os.getpid())
 
             try:
@@ -308,7 +336,7 @@ class Window():
                               "org.freedesktop.FileManager1",
                               "ShowItems",
                               GLib.Variant("(ass)",
-                                           ([file.get_uri()], startup_id)),
+                                           ([uri], startup_id)),
                               None,
                               Gio.DBusCallFlags.NONE,
                               1000,
@@ -322,7 +350,7 @@ class Window():
 
         try:
             print("Opening containing folder using Gio (mimetype)")
-            Gio.AppInfo.launch_default_for_uri(prefs.get_save_uri(), None)
+            Gio.AppInfo.launch_default_for_uri(uri, None)
         except GLib.Error as e:
             print("Could not open containing folder: %s" % e.message)
 

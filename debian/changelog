@@ -1,3 +1,18 @@
+thingy (1.0.1) una; urgency=medium
+
+  * Improve empty page
+  * Improve icon
+  * l10n: Update POT
+  * packaging: Add dependency on xreader and xapp
+  * packaging: Fix typo
+  * Preserve window state
+  * Add an action context menu to open the containing folder
+  * Update the list when favorites or recents change
+  * Use uris, add move-to-trash and add/remove favorites
+  * l10n: Update POT
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon, 22 Nov 2021 15:49:16 +0000
+
 thingy (1.0.0) una; urgency=low
 
   * Initial release

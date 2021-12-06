@@ -1,4 +1,4 @@
-# French translation for linuxmint
+# Kazakh translation for linuxmint
 # Copyright (c) 2021 Rosetta Contributors and Canonical Ltd 2021
 # This file is distributed under the same license as the linuxmint package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2021-11-22 15:55+0000\n"
-"Last-Translator: Clement Lefebvre <root@linuxmint.com>\n"
-"Language-Team: French <fr@li.org>\n"
+"PO-Revision-Date: 2021-12-05 09:41+0000\n"
+"Last-Translator: Murat Käribay <Unknown>\n"
+"Language-Team: Kazakh <kk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,46 +20,44 @@ msgstr ""
 #: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
 msgid "Library"
-msgstr "Bibliothèque"
+msgstr "Жинақ"
 
 #: usr/lib/thingy/thingy.py:86 usr/lib/thingy/thingy.py:142
 msgid "About"
-msgstr "À propos"
+msgstr "Бағдарлама жайлы"
 
 #: usr/lib/thingy/thingy.py:91
 msgid "Quit"
-msgstr "Quitter"
+msgstr "Шығу"
 
 #: usr/lib/thingy/thingy.py:284
 msgid "Open"
-msgstr "Ouvrir"
+msgstr "Ашу"
 
 #: usr/lib/thingy/thingy.py:287
 msgid "Open containing folder"
-msgstr "Ouvrir le dossier contenant le fichier"
+msgstr "Орналасқан бумасын ашу"
 
 #: usr/lib/thingy/thingy.py:292
 msgid "Remove from favorites"
-msgstr "Retirer des favoris"
+msgstr "Таңдаулыдан алып тастау"
 
 #: usr/lib/thingy/thingy.py:295
 msgid "Add to favorites"
-msgstr "Ajouter aux favoris"
+msgstr "Таңдаулыға қосу"
 
 #: usr/lib/thingy/thingy.py:299
 msgid "Move to trash"
-msgstr "Mettre à la corbeille"
+msgstr "Себетке тастау"
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"
-msgstr "Favoris et documents récents"
+msgstr "Жуырдағы мен таңдаулы құжаттар"
 
 #: usr/share/thingy/thingy.ui.h:3
 msgid "No documents found"
-msgstr "Aucun document trouvé"
+msgstr "Құжат табылмады"
 
 #: usr/share/thingy/thingy.ui.h:4
 msgid "You can add documents by opening them or by marking them as favorites"
-msgstr ""
-"Vous pouvez ajouter des documents en les ouvrant ou en les ajoutant aux "
-"favoris"
+msgstr "Құжаттарды ашып, немесе таңдаулы деп белгілеп, қоса аласыз"

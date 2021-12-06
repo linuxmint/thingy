@@ -1,4 +1,4 @@
-# French translation for linuxmint
+# French (Canada) translation for linuxmint
 # Copyright (c) 2021 Rosetta Contributors and Canonical Ltd 2021
 # This file is distributed under the same license as the linuxmint package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2021-11-22 15:55+0000\n"
-"Last-Translator: Clement Lefebvre <root@linuxmint.com>\n"
-"Language-Team: French <fr@li.org>\n"
+"PO-Revision-Date: 2021-11-22 21:11+0000\n"
+"Last-Translator: guwrt <guwrt77@gmail.com>\n"
+"Language-Team: French (Canada) <fr_CA@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -52,7 +52,7 @@ msgstr "Mettre à la corbeille"
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"
-msgstr "Favoris et documents récents"
+msgstr "Documents récents  et favoris"
 
 #: usr/share/thingy/thingy.ui.h:3
 msgid "No documents found"
@@ -61,5 +61,5 @@ msgstr "Aucun document trouvé"
 #: usr/share/thingy/thingy.ui.h:4
 msgid "You can add documents by opening them or by marking them as favorites"
 msgstr ""
-"Vous pouvez ajouter des documents en les ouvrant ou en les ajoutant aux "
+"Vous pouvez ajouter des documents en les ouvrant ou les marquand comme "
 "favoris"

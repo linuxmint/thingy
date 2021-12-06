@@ -1,4 +1,4 @@
-# French translation for linuxmint
+# Occitan (post 1500) translation for linuxmint
 # Copyright (c) 2021 Rosetta Contributors and Canonical Ltd 2021
 # This file is distributed under the same license as the linuxmint package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2021-11-22 15:55+0000\n"
-"Last-Translator: Clement Lefebvre <root@linuxmint.com>\n"
-"Language-Team: French <fr@li.org>\n"
+"PO-Revision-Date: 2021-11-26 13:11+0000\n"
+"Last-Translator: Quentin PAGÈS <Unknown>\n"
+"Language-Team: Occitan (post 1500) <oc@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,46 +20,45 @@ msgstr ""
 #: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
 msgid "Library"
-msgstr "Bibliothèque"
+msgstr "Bibliotèca"
 
 #: usr/lib/thingy/thingy.py:86 usr/lib/thingy/thingy.py:142
 msgid "About"
-msgstr "À propos"
+msgstr "A prepaus"
 
 #: usr/lib/thingy/thingy.py:91
 msgid "Quit"
-msgstr "Quitter"
+msgstr "Sortir"
 
 #: usr/lib/thingy/thingy.py:284
 msgid "Open"
-msgstr "Ouvrir"
+msgstr "Dobrir"
 
 #: usr/lib/thingy/thingy.py:287
 msgid "Open containing folder"
-msgstr "Ouvrir le dossier contenant le fichier"
+msgstr "Dobrir lo dossièr que conten lo fichièr"
 
 #: usr/lib/thingy/thingy.py:292
 msgid "Remove from favorites"
-msgstr "Retirer des favoris"
+msgstr "Suprimir dels favorits"
 
 #: usr/lib/thingy/thingy.py:295
 msgid "Add to favorites"
-msgstr "Ajouter aux favoris"
+msgstr "Apondre als favorits"
 
 #: usr/lib/thingy/thingy.py:299
 msgid "Move to trash"
-msgstr "Mettre à la corbeille"
+msgstr "Metre dins l'escobilhièr"
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"
-msgstr "Favoris et documents récents"
+msgstr "Documents recents e favorits"
 
 #: usr/share/thingy/thingy.ui.h:3
 msgid "No documents found"
-msgstr "Aucun document trouvé"
+msgstr "Cap de document pas trobat"
 
 #: usr/share/thingy/thingy.ui.h:4
 msgid "You can add documents by opening them or by marking them as favorites"
 msgstr ""
-"Vous pouvez ajouter des documents en les ouvrant ou en les ajoutant aux "
-"favoris"
+"Podètz apondre de document en lo dobrissent o en los marcant coma favorits"

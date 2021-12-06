@@ -1,4 +1,4 @@
-# French translation for linuxmint
+# Korean translation for linuxmint
 # Copyright (c) 2021 Rosetta Contributors and Canonical Ltd 2021
 # This file is distributed under the same license as the linuxmint package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2021-11-22 15:55+0000\n"
-"Last-Translator: Clement Lefebvre <root@linuxmint.com>\n"
-"Language-Team: French <fr@li.org>\n"
+"PO-Revision-Date: 2021-11-28 20:12+0000\n"
+"Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
+"Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,46 +20,44 @@ msgstr ""
 #: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
 msgid "Library"
-msgstr "Bibliothèque"
+msgstr "라이브러리"
 
 #: usr/lib/thingy/thingy.py:86 usr/lib/thingy/thingy.py:142
 msgid "About"
-msgstr "À propos"
+msgstr "소개"
 
 #: usr/lib/thingy/thingy.py:91
 msgid "Quit"
-msgstr "Quitter"
+msgstr "닫기"
 
 #: usr/lib/thingy/thingy.py:284
 msgid "Open"
-msgstr "Ouvrir"
+msgstr "열기"
 
 #: usr/lib/thingy/thingy.py:287
 msgid "Open containing folder"
-msgstr "Ouvrir le dossier contenant le fichier"
+msgstr "파일이 저장된 폴더 열기"
 
 #: usr/lib/thingy/thingy.py:292
 msgid "Remove from favorites"
-msgstr "Retirer des favoris"
+msgstr "즐겨찾기에서 제거"
 
 #: usr/lib/thingy/thingy.py:295
 msgid "Add to favorites"
-msgstr "Ajouter aux favoris"
+msgstr "즐겨찾기에 추가"
 
 #: usr/lib/thingy/thingy.py:299
 msgid "Move to trash"
-msgstr "Mettre à la corbeille"
+msgstr "휴지통으로 옮기기"
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"
-msgstr "Favoris et documents récents"
+msgstr "즐겨찾기 및 최근 사용한 문서"
 
 #: usr/share/thingy/thingy.ui.h:3
 msgid "No documents found"
-msgstr "Aucun document trouvé"
+msgstr "문서가 없습니다"
 
 #: usr/share/thingy/thingy.ui.h:4
 msgid "You can add documents by opening them or by marking them as favorites"
-msgstr ""
-"Vous pouvez ajouter des documents en les ouvrant ou en les ajoutant aux "
-"favoris"
+msgstr "문서를 열거나 즐겨찾기로 표시해서 문서를 추가할 수 있습니다."

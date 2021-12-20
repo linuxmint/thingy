@@ -78,6 +78,15 @@ class Window():
         self.window.set_title(_("Library"))
         XApp.set_window_icon_name (self.window, "thingy")
 
+        provider = Gtk.CssProvider()
+        provider.load_from_path("/usr/share/thingy/thingy.css")
+        screen = Gdk.Display.get_default_screen(Gdk.Display.get_default())
+        # I was unable to found instrospected version of this
+        Gtk.StyleContext.add_provider_for_screen(
+            screen, provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
+
         # Menubar
         accel_group = Gtk.AccelGroup()
         self.window.add_accel_group(accel_group)
@@ -220,6 +229,7 @@ class Window():
         num_pages = info.get_attribute_string("metadata::xreader::num-pages")
 
         button = Gtk.Button()
+        button.get_style_context().add_class("thingy-button")
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.set_spacing(6)
         button.add(box)
@@ -261,16 +271,20 @@ class Window():
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size("/usr/share/thingy/doc.svg", 198, 256)
             image = Gtk.Image.new_from_pixbuf(pixbuf)
 
+        image.get_style_context().add_class("thingy-image")
+
         if mark_as_favorite:
             emblem = Gtk.Image()
             emblem.set_from_icon_name("emblem-xapp-favorite", Gtk.IconSize.LARGE_TOOLBAR)
             emblem.set_halign(Gtk.Align.END)
             emblem.set_valign(Gtk.Align.START)
-            emblem.set_margin_end(30)
+            emblem.set_margin_end(10)
             emblem.set_margin_top(10)
             overlay.add_overlay(emblem)
 
+        image.set_halign(Gtk.Align.CENTER)
         overlay.add(image)
+        overlay.set_halign(Gtk.Align.CENTER)
         box.pack_end(overlay, False, False, 0)
 
         self.flowbox.add(button)

@@ -1,0 +1,9 @@
+.thingy-button {
+}
+
+.thingy-image {
+	border-radius: 0px;
+	border: 1px solid #333;
+	box-shadow: 7px 5px 5px #333;
+	margin-bottom: 7px;
+}

@@ -20,12 +20,8 @@ gettext.bindtextdomain(APP, LOCALE_DIR)
 gettext.textdomain(APP)
 _ = gettext.gettext
 
-XREADER_MIME_TYPES = ['application/pdf', 'application/x-bzpdf', 'application/x-gzpdf', 'application/x-xzpdf', \
-'application/postscript', 'application/x-bzpostscript', 'application/x-gzpostscript', 'image/x-eps', 'image/x-bzeps', \
-'image/x-gzeps', 'application/x-dvi', 'application/x-bzdvi', 'application/x-gzdvi', 'image/vnd.djvu', \
-'image/vnd.djvu+multipage', 'image/tiff', 'application/x-cbr', 'application/x-cbz', 'application/x-cb7', \
-'application/x-cbt', 'application/vnd.comicbook+zip', 'application/vnd.comicbook-rar', 'application/oxps', \
-'application/vnd.ms-xpsdocument', 'application/epub+zip']
+SUPPORTED_APPS = ["xreader"]
+SUPPORTED_APPS += ["libreoffice-calc", "libreoffice-writer", "libreoffice-draw", "libreoffice-impress", "libreoffice-base"]
 
 # Used as a decorator to run things in the background
 def _async(func):
@@ -123,13 +119,24 @@ class Window():
         self.window.connect("destroy", self.on_window_destroyed)
 
         # Load data
-        self.app_mime_types = XREADER_MIME_TYPES
-        for app_info in Gio.AppInfo.get_all():
-            if app_info.get_filename() == "/usr/share/applications/xreader.desktop":
-                self.app_mime_types = app_info.get_supported_types()
+        self.app_model = Gtk.ListStore(object, str) # APP_INFO, APP_NAME
+        for app in SUPPORTED_APPS:
+            for app_info in Gio.AppInfo.get_all():
+                if app_info.get_filename() == f"/usr/share/applications/{app}.desktop":
+                    self.app_model.append([app_info, app_info.get_display_name()])
+                    break
+
+        # Combo
+        self.app_combo = self.builder.get_object("app_combo")
+        renderer = Gtk.CellRendererText()
+        self.app_combo.pack_start(renderer, True)
+        self.app_combo.add_attribute(renderer, "text", 1)
+        self.app_combo.set_model(self.app_model)
+        self.app_combo.set_active(0) # Select 1st app
 
         self.load_documents()
 
+        self.app_combo.connect("changed", self.on_app_changed)
         self.recent_manager.connect("changed", self.load_documents)
         self.favorites_manager.connect("changed", self.load_documents)
 
@@ -175,15 +182,21 @@ class Window():
     def on_menu_quit(self, widget):
         self.application.quit()
 
+    def on_app_changed(self, widget):
+        self.load_documents()
+
     @_async
     def load_documents(self, data=None):
         self.documents = []
         self.clear_flowbox()
 
+        appinfo = self.app_combo.get_model()[self.app_combo.get_active()][0]
+        app_mime_types = appinfo.get_supported_types()
+
         # Favorites
         items = self.favorites_manager.get_favorites(None)
         for item in items:
-            if item.cached_mimetype in self.app_mime_types:
+            if item.cached_mimetype in app_mime_types:
                 uri = item.uri
                 f = Gio.File.new_for_uri(uri)
                 if f.is_native() and os.path.exists(f.get_path()):
@@ -193,7 +206,7 @@ class Window():
         # Recent
         documents = []
         for recent in self.recent_manager.get_items():
-            if recent.get_mime_type() in self.app_mime_types:
+            if recent.get_mime_type() in app_mime_types:
                 documents.append(recent)
         documents = sorted(documents, key=lambda x: x.get_modified(), reverse=True)
         for item in documents:
@@ -334,7 +347,7 @@ class Window():
 
     @_async
     def open_document(self, item, uri):
-        subprocess.Popen(["xreader", uri])
+        Gio.AppInfo.launch_default_for_uri(uri, None)
 
     @_async
     def open_containing_folder(self, item, uri):
@@ -360,13 +373,12 @@ class Window():
             except GLib.Error as e:
                 pass
 
-        app = Gio.AppInfo.get_default_for_type("inode/directory", True)
-
-        try:
-            print("Opening containing folder using Gio (mimetype)")
-            Gio.AppInfo.launch_default_for_uri(uri, None)
-        except GLib.Error as e:
-            print("Could not open containing folder: %s" % e.message)
+            try:
+                print("Opening containing folder using Gio (mimetype)")
+                parent_uri = file.get_parent().get_uri()
+                Gio.AppInfo.launch_default_for_uri(parent_uri, None)
+            except GLib.Error as e:
+                print("Could not open containing folder: %s" % e.message)
 
 
 if __name__ == "__main__":

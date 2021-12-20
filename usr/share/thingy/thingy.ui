@@ -33,6 +33,24 @@
             </child>
           </object>
         </child>
+        <child>
+          <object class="GtkComboBox" id="app_combo">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
       </object>
     </child>
     <child>

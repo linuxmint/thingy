@@ -1,3 +1,10 @@
+thingy (1.0.3) una; urgency=medium
+
+  * Visual improvements
+  * Add support for LibreOffice documents
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon, 20 Dec 2021 14:31:40 +0000
+
 thingy (1.0.2) una; urgency=medium
 
   * l10n: Update translations

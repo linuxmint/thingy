@@ -1,3 +1,10 @@
+thingy (1.0.4) una; urgency=medium
+
+  * Filter text/plain for Writer and pdf for Draw
+  * Tooltips: Show full path
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon, 27 Dec 2021 16:16:58 +0000
+
 thingy (1.0.3) una; urgency=medium
 
   * Visual improvements

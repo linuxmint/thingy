@@ -23,6 +23,10 @@ _ = gettext.gettext
 SUPPORTED_APPS = ["xreader"]
 SUPPORTED_APPS += ["libreoffice-calc", "libreoffice-writer", "libreoffice-draw", "libreoffice-impress", "libreoffice-base"]
 
+HIDDEN_MIMETYPES = {}
+HIDDEN_MIMETYPES["libreoffice-writer"] = ["text/plain"]
+HIDDEN_MIMETYPES["libreoffice-draw"] = ["application/pdf"]
+
 # Used as a decorator to run things in the background
 def _async(func):
     def wrapper(*args, **kwargs):
@@ -119,11 +123,11 @@ class Window():
         self.window.connect("destroy", self.on_window_destroyed)
 
         # Load data
-        self.app_model = Gtk.ListStore(object, str) # APP_INFO, APP_NAME
+        self.app_model = Gtk.ListStore(object, str, str) # APP_INFO, APP_NAME, ID
         for app in SUPPORTED_APPS:
             for app_info in Gio.AppInfo.get_all():
                 if app_info.get_filename() == f"/usr/share/applications/{app}.desktop":
-                    self.app_model.append([app_info, app_info.get_display_name()])
+                    self.app_model.append([app_info, app_info.get_display_name(), app])
                     break
 
         # Combo
@@ -190,8 +194,9 @@ class Window():
         self.documents = []
         self.clear_flowbox()
 
-        appinfo = self.app_combo.get_model()[self.app_combo.get_active()][0]
-        app_mime_types = appinfo.get_supported_types()
+        app_info = self.app_combo.get_model()[self.app_combo.get_active()][0]
+        app_id = self.app_combo.get_model()[self.app_combo.get_active()][2]
+        app_mime_types = app_info.get_supported_types()
 
         # Favorites
         items = self.favorites_manager.get_favorites(None)
@@ -201,7 +206,7 @@ class Window():
                 f = Gio.File.new_for_uri(uri)
                 if f.is_native() and os.path.exists(f.get_path()):
                     info = f.query_info('*', Gio.FileQueryInfoFlags.NONE, None)
-                    self.add_document_to_library(info, uri, True)
+                    self.add_document_to_library(info, uri, item.cached_mimetype, app_id, True)
 
         # Recent
         documents = []
@@ -214,7 +219,7 @@ class Window():
             if item.is_local() and item.exists():
                 f = Gio.File.new_for_uri(uri)
                 info = f.query_info('*', Gio.FileQueryInfoFlags.NONE, None)
-                self.add_document_to_library(info, uri, False)
+                self.add_document_to_library(info, uri, item.get_mime_type(), app_id, False)
 
         self.set_stack_page()
 
@@ -231,8 +236,10 @@ class Window():
             self.flowbox.remove(child)
 
     @idle
-    def add_document_to_library(self, info, uri, mark_as_favorite):
+    def add_document_to_library(self, info, uri, mimetype, app_id, mark_as_favorite):
         if uri in self.documents:
+            return
+        if app_id in HIDDEN_MIMETYPES and mimetype in HIDDEN_MIMETYPES[app_id]:
             return
         self.documents.append(uri)
         name = info.get_display_name()

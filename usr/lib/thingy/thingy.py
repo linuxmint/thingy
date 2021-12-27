@@ -202,11 +202,7 @@ class Window():
         items = self.favorites_manager.get_favorites(None)
         for item in items:
             if item.cached_mimetype in app_mime_types:
-                uri = item.uri
-                f = Gio.File.new_for_uri(uri)
-                if f.is_native() and os.path.exists(f.get_path()):
-                    info = f.query_info('*', Gio.FileQueryInfoFlags.NONE, None)
-                    self.add_document_to_library(info, uri, item.cached_mimetype, app_id, True)
+                self.add_document_to_library(item.uri, app_id, True)
 
         # Recent
         documents = []
@@ -215,11 +211,7 @@ class Window():
                 documents.append(recent)
         documents = sorted(documents, key=lambda x: x.get_modified(), reverse=True)
         for item in documents:
-            uri = item.get_uri()
-            if item.is_local() and item.exists():
-                f = Gio.File.new_for_uri(uri)
-                info = f.query_info('*', Gio.FileQueryInfoFlags.NONE, None)
-                self.add_document_to_library(info, uri, item.get_mime_type(), app_id, False)
+            self.add_document_to_library(item.get_uri(), app_id, False)
 
         self.set_stack_page()
 
@@ -236,10 +228,17 @@ class Window():
             self.flowbox.remove(child)
 
     @idle
-    def add_document_to_library(self, info, uri, mimetype, app_id, mark_as_favorite):
+    def add_document_to_library(self, uri, app_id, mark_as_favorite):
+        # Ignore duplicates
         if uri in self.documents:
             return
-        if app_id in HIDDEN_MIMETYPES and mimetype in HIDDEN_MIMETYPES[app_id]:
+        f = Gio.File.new_for_uri(uri)
+        # Ignore non-existing paths
+        if not (f.is_native() and os.path.exists(f.get_path())):
+            return
+        info = f.query_info('*', Gio.FileQueryInfoFlags.NONE, None)
+        # Ignore hidden mimetypes
+        if app_id in HIDDEN_MIMETYPES and info.get_content_type() in HIDDEN_MIMETYPES[app_id]:
             return
         self.documents.append(uri)
         name = info.get_display_name()
@@ -254,7 +253,7 @@ class Window():
         box.set_spacing(6)
         button.add(box)
         button.set_relief(Gtk.ReliefStyle.NONE)
-        button.set_tooltip_text(name)
+        button.set_tooltip_text(f.get_path())
         button.connect("button-press-event", self.on_button_pressed, uri, mark_as_favorite)
         label = Gtk.Label(label=name)
         label.set_max_width_chars(25)

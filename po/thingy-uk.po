@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2021-11-14 15:21+0000\n"
+"PO-Revision-Date: 2021-12-24 18:32+0000\n"
 "Last-Translator: Mykola Tkach <chistomov@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2021-12-06 15:07+0000\n"
-"X-Generator: Launchpad (build f92b6e0bb2624f8a9125e3f45b7621c6e230c5ff)\n"
+"X-Launchpad-Export-Date: 2021-12-31 12:26+0000\n"
+"X-Generator: Launchpad (build adb364d6a74a28e7b95d51cd30446ec16160de6c)\n"
 
 #: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
@@ -32,23 +32,23 @@ msgstr "Вийти"
 
 #: usr/lib/thingy/thingy.py:284
 msgid "Open"
-msgstr ""
+msgstr "Відкрити"
 
 #: usr/lib/thingy/thingy.py:287
 msgid "Open containing folder"
-msgstr ""
+msgstr "Відкрити вміст теки"
 
 #: usr/lib/thingy/thingy.py:292
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Вилучити з улюбленого"
 
 #: usr/lib/thingy/thingy.py:295
 msgid "Add to favorites"
-msgstr ""
+msgstr "Додати до улюбленого"
 
 #: usr/lib/thingy/thingy.py:299
 msgid "Move to trash"
-msgstr ""
+msgstr "Пересунути до смітника"
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"

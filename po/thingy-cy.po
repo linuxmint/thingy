@@ -1,4 +1,4 @@
-# Lithuanian translation for linuxmint
+# Welsh translation for linuxmint
 # Copyright (c) 2021 Rosetta Contributors and Canonical Ltd 2021
 # This file is distributed under the same license as the linuxmint package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
@@ -8,56 +8,58 @@ msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2021-12-01 10:53+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Lithuanian <lt@li.org>\n"
+"PO-Revision-Date: 2021-12-09 12:27+0000\n"
+"Last-Translator: Rhoslyn Prys <Unknown>\n"
+"Language-Team: Welsh <cy@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2021-12-31 12:26+0000\n"
 "X-Generator: Launchpad (build adb364d6a74a28e7b95d51cd30446ec16160de6c)\n"
+"Language: cy\n"
 
 #: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
 msgid "Library"
-msgstr ""
+msgstr "Llyfrgell"
 
 #: usr/lib/thingy/thingy.py:86 usr/lib/thingy/thingy.py:142
 msgid "About"
-msgstr ""
+msgstr "Ynghylch"
 
 #: usr/lib/thingy/thingy.py:91
 msgid "Quit"
-msgstr ""
+msgstr "Gadael"
 
 #: usr/lib/thingy/thingy.py:284
 msgid "Open"
-msgstr ""
+msgstr "Agor"
 
 #: usr/lib/thingy/thingy.py:287
 msgid "Open containing folder"
-msgstr ""
+msgstr "Agor y ffolder cynnwys"
 
 #: usr/lib/thingy/thingy.py:292
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Tynnu o'r ffefrynnau"
 
 #: usr/lib/thingy/thingy.py:295
 msgid "Add to favorites"
-msgstr ""
+msgstr "Ychwanegu at y ffefrynnau"
 
 #: usr/lib/thingy/thingy.py:299
 msgid "Move to trash"
-msgstr ""
+msgstr "Symud i'r sbwriel"
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"
-msgstr ""
+msgstr "Dogfennau diweddar a hoff ddogfennau"
 
 #: usr/share/thingy/thingy.ui.h:3
 msgid "No documents found"
-msgstr ""
+msgstr "Heb ganfod dogfennau"
 
 #: usr/share/thingy/thingy.ui.h:4
 msgid "You can add documents by opening them or by marking them as favorites"
 msgstr ""
+"Gallwch ychwanegu dogfennau drwy eu hangor neu eu nodi fel ffefrynnau"

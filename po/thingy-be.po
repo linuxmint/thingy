@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2021-11-23 17:05+0000\n"
+"PO-Revision-Date: 2021-12-21 21:21+0000\n"
 "Last-Translator: Anton Hryb <Unknown>\n"
 "Language-Team: Belarusian <be@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2021-12-06 15:07+0000\n"
-"X-Generator: Launchpad (build f92b6e0bb2624f8a9125e3f45b7621c6e230c5ff)\n"
+"X-Launchpad-Export-Date: 2021-12-31 12:26+0000\n"
+"X-Generator: Launchpad (build adb364d6a74a28e7b95d51cd30446ec16160de6c)\n"
 
 #: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
@@ -56,8 +56,8 @@ msgstr "Нядаўнія і абраныя дакументы"
 
 #: usr/share/thingy/thingy.ui.h:3
 msgid "No documents found"
-msgstr "Дакументаў не знойдзена"
+msgstr "Дакументы не знойдзены"
 
 #: usr/share/thingy/thingy.ui.h:4
 msgid "You can add documents by opening them or by marking them as favorites"
-msgstr "Можаце дадаць дакументы калі адкрыеце іх або пазначыўшы як абраныя"
+msgstr "Каб дадаць дакументы, проста адкрыйце іх або пазначце як абраныя"

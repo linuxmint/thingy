@@ -15,7 +15,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="library-doc-epub.svg">
+   sodipodi:docname="doc-epub.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -26,14 +26,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="222.08962"
+     inkscape:cx="-208.23537"
      inkscape:cy="564.30547"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g821"
      showgrid="false"
      inkscape:window-width="2560"
      inkscape:window-height="1349"
-     inkscape:window-x="0"
+     inkscape:window-x="2560"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
@@ -53,44 +53,40 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#012335;fill-opacity:1;stroke:none;stroke-width:0.58737499;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#86b918;fill-opacity:1;stroke:none;stroke-width:0.58737499;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect834"
        width="210"
        height="297"
        x="5.5511151e-16"
        y="5.6843419e-14"
        ry="0" />
-    <path
-       inkscape:connector-curvature="0"
-       style="fill:#86b918;stroke-width:0.29694346"
-       d="m 104.99441,198.77806 -50.272568,-50.28438 50.272568,-50.272507 16.76545,16.756517 -33.524934,33.51599 16.762464,16.76243 50.2815,-50.27247 -43.79919,-43.799128 c -3.57522,-3.581148 -9.3775,-3.581148 -12.955691,0 L 27.679175,142.02032 c -3.572233,3.58113 -3.572233,9.38341 0,12.96158 l 70.841879,70.83583 c 3.578176,3.57816 9.383426,3.57816 12.955666,0 l 70.84188,-70.83878 c 3.5752,-3.57819 3.5752,-9.38341 0,-12.95565 l -10.28613,-10.27723 z"
-       id="path2" />
     <rect
-       style="fill:#02162d;fill-opacity:0.78431374;stroke:none;stroke-width:0.57407922;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect888"
-       width="209.80441"
-       height="50.260483"
-       x="0.24899364"
-       y="123.36976"
-       ry="0.3112497" />
-    <rect
-       style="fill:#02162d;fill-opacity:1;stroke:none;stroke-width:0.77932078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#86b918;fill-opacity:1;stroke:none;stroke-width:0.77932078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect890"
        width="13.604184"
        height="296.22067"
        x="0.38966039"
        y="0.3896637"
        ry="0" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:125%;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="104.38262"
-       y="160.61792"
-       id="text896"><tspan
-         sodipodi:role="line"
-         id="tspan894"
+    <g
+       id="g821"
+       transform="translate(-1.25e-7,-16.840691)">
+      <path
+         id="path2"
+         d="M 104.99441,197.71972 54.721842,147.43534 104.99441,97.162839 121.75986,113.91935 88.234926,147.43534 104.99739,164.19777 155.27889,113.9253 111.4797,70.126178 c -3.57522,-3.581148 -9.3775,-3.581148 -12.955691,0 L 27.679175,140.96198 c -3.572233,3.58113 -3.572233,9.38341 0,12.96158 l 70.841879,70.83583 c 3.578176,3.57816 9.383426,3.57816 12.955666,0 l 70.84188,-70.83878 c 3.5752,-3.57819 3.5752,-9.38341 0,-12.95565 l -10.28613,-10.27723 z"
+         style="fill:#ffffff;stroke-width:0.29694346"
+         inkscape:connector-curvature="0" />
+      <text
+         id="text896"
+         y="262.74719"
          x="104.38262"
-         y="160.61792"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:35.27777863px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:0.26458332px">ePUB</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:125%;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:35.27777863px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:0.26458332px"
+           y="262.74719"
+           x="104.38262"
+           id="tspan894"
+           sodipodi:role="line">ePUB</tspan></text>
+    </g>
   </g>
 </svg>

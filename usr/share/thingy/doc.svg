@@ -15,7 +15,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="library-doc.svg">
+   sodipodi:docname="doc-generic.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -25,15 +25,15 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="-97.028709"
-     inkscape:cy="548.22358"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="-415.01005"
+     inkscape:cy="1036.4134"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer1-92"
      showgrid="false"
      inkscape:window-width="2560"
      inkscape:window-height="1349"
-     inkscape:window-x="0"
+     inkscape:window-x="2560"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
@@ -52,29 +52,41 @@
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <rect
-       style="fill:#012335;fill-opacity:1;stroke:none;stroke-width:0.58737499;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect834"
-       width="210"
-       height="297"
-       x="5.5511151e-16"
-       y="5.6843419e-14"
-       ry="0" />
-    <rect
-       style="fill:#02162d;fill-opacity:1;stroke:none;stroke-width:0.57407922;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect888"
-       width="209.80441"
-       height="50.260483"
-       x="0.24899364"
-       y="123.36976"
-       ry="0.3112497" />
-    <rect
-       style="fill:#02162d;fill-opacity:1;stroke:none;stroke-width:0.77932078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect890"
-       width="13.604184"
-       height="296.22067"
-       x="0.38966039"
-       y="0.3896637"
-       ry="0" />
+    <g
+       transform="matrix(1.6407014,0,0,2.2728406,-2842.553,-1312.074)"
+       id="x-office-spreadsheet_128"
+       inkscape:label="#g15142">
+      <g
+         transform="translate(1548,640)"
+         inkscape:label="#g4140"
+         id="dckdnc">
+        <rect
+           style="opacity:0.75;fill:none;fill-opacity:0.47448982;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4138-3"
+           width="128"
+           height="128"
+           x="0"
+           y="-64"
+           rx="0"
+           ry="0" />
+        <g
+           transform="matrix(1.9787183,0,0,1.9830421,0.68090372,-2023.4557)"
+           id="layer1-5-1"
+           inkscape:label="Layer 1">
+          <g
+             transform="matrix(1.3428376,0,0,1.340755,-0.22814694,988.19153)"
+             id="layer1-1-6"
+             inkscape:label="Layer 1" />
+        </g>
+      </g>
+      <g
+         id="g904"
+         transform="matrix(1.3617391,0,0,1.1074919,-398.60214,-61.744983)">
+        <g
+           inkscape:label="Layer 1"
+           id="layer1-92"
+           transform="translate(1547.9993,640.00113)" />
+      </g>
+    </g>
   </g>
 </svg>

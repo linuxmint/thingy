@@ -85,6 +85,9 @@
                         <property name="max_children_per_line">10</property>
                       </object>
                     </child>
+                    <style>
+                      <class name="view"/>
+                    </style>
                   </object>
                 </child>
               </object>

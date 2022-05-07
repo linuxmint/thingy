@@ -115,11 +115,11 @@
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <property name="orientation">vertical</property>
-                    <property name="spacing">25</property>
                     <child>
                       <object class="GtkImage">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="margin_bottom">20</property>
                         <property name="pixel_size">96</property>
                         <property name="icon_name">emblem-documents-symbolic</property>
                         <property name="icon_size">6</property>
@@ -137,6 +137,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="margin_bottom">8</property>
                         <property name="label" translatable="yes">No documents found</property>
                         <attributes>
                           <attribute name="weight" value="bold"/>
@@ -181,6 +182,9 @@
                 <property name="position">1</property>
               </packing>
             </child>
+            <style>
+              <class name="view"/>
+            </style>
           </object>
           <packing>
             <property name="expand">True</property>

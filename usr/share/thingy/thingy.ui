@@ -85,6 +85,7 @@
                         <property name="margin_right">8</property>
                         <property name="margin_top">8</property>
                         <property name="margin_bottom">8</property>
+                        <property name="homogeneous">True</property>
                         <property name="min_children_per_line">1</property>
                         <property name="max_children_per_line">10</property>
                       </object>

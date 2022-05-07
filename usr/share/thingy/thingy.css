@@ -9,8 +9,12 @@
 
 .thingy-image {
 	border-radius: 0px;
-	border: 1px solid #666;
-	box-shadow: 3px 3px 6px alpha(black, 0.45);
+	border: 1px solid #aaa;
+	box-shadow: 4px 4px 6px alpha(black, 0.2);
 	margin-bottom: 7px;
 	-gtk-icon-shadow: none;
+}
+
+.thingy-button:hover .thingy-image {
+	box-shadow: 4px 4px 6px alpha(black, 0.4);
 }

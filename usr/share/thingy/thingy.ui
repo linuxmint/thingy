@@ -31,6 +31,9 @@
                 <property name="icon_name">open-menu-symbolic</property>
               </object>
             </child>
+            <style>
+              <class name="flat"/>
+            </style>
           </object>
         </child>
         <child>

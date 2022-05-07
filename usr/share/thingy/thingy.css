@@ -1,4 +1,10 @@
-.thingy-button {
+/* Remove all the border and bg styling */
+.thingy-button.flat,
+.thingy-button.flat:hover,
+.thingy-button.flat:active {
+	border: none;
+	background-image: none;
+	background-color: transparent;
 }
 
 .thingy-image {
@@ -6,4 +12,5 @@
 	border: 1px solid #666;
 	box-shadow: 3px 3px 6px alpha(black, 0.45);
 	margin-bottom: 7px;
+	-gtk-icon-shadow: none;
 }

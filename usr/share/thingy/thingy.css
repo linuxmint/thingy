@@ -3,7 +3,7 @@
 
 .thingy-image {
 	border-radius: 0px;
-	border: 1px solid #333;
-	box-shadow: 7px 5px 5px #333;
+	border: 1px solid #666;
+	box-shadow: 3px 3px 6px alpha(black, 0.45);
 	margin-bottom: 7px;
 }

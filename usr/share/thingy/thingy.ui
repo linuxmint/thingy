@@ -31,6 +31,9 @@
                 <property name="icon_name">open-menu-symbolic</property>
               </object>
             </child>
+            <style>
+              <class name="flat"/>
+            </style>
           </object>
         </child>
         <child>
@@ -66,22 +69,30 @@
               <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="shadow_type">in</property>
                 <property name="propagate_natural_width">True</property>
                 <property name="propagate_natural_height">True</property>
                 <child>
                   <object class="GtkViewport">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="shadow_type">none</property>
                     <child>
                       <object class="GtkFlowBox" id="flowbox">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="valign">center</property>
+                        <property name="valign">start</property>
+                        <property name="margin_left">8</property>
+                        <property name="margin_right">8</property>
+                        <property name="margin_top">8</property>
+                        <property name="margin_bottom">8</property>
+                        <property name="homogeneous">True</property>
                         <property name="min_children_per_line">1</property>
                         <property name="max_children_per_line">10</property>
                       </object>
                     </child>
+                    <style>
+                      <class name="view"/>
+                    </style>
                   </object>
                 </child>
               </object>
@@ -104,11 +115,11 @@
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <property name="orientation">vertical</property>
-                    <property name="spacing">25</property>
                     <child>
                       <object class="GtkImage">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="margin_bottom">20</property>
                         <property name="pixel_size">96</property>
                         <property name="icon_name">emblem-documents-symbolic</property>
                         <property name="icon_size">6</property>
@@ -126,6 +137,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="margin_bottom">8</property>
                         <property name="label" translatable="yes">No documents found</property>
                         <attributes>
                           <attribute name="weight" value="bold"/>
@@ -170,6 +182,9 @@
                 <property name="position">1</property>
               </packing>
             </child>
+            <style>
+              <class name="view"/>
+            </style>
           </object>
           <packing>
             <property name="expand">True</property>

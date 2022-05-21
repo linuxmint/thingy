@@ -281,15 +281,15 @@ class Window():
         overlay = Gtk.Overlay()
 
         if thumbnail_path != None:
-            image = Gtk.Image.new_from_file(thumbnail_path)
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(thumbnail_path, 198, 198)
         else:
             extension = os.path.splitext(uri)[1][1:].strip().lower()
             if os.path.exists("/usr/share/thingy/doc-%s.svg" % extension):
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size("/usr/share/thingy/doc-%s.svg" % extension, 198, 256)
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size("/usr/share/thingy/doc-%s.svg" % extension, 198, 198)
             else:
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size("/usr/share/thingy/doc.svg", 198, 256)
-            image = Gtk.Image.new_from_pixbuf(pixbuf)
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size("/usr/share/thingy/doc.svg", 198, 198)
 
+        image = Gtk.Image.new_from_pixbuf(pixbuf)
         image.get_style_context().add_class("thingy-image")
 
         if mark_as_favorite:

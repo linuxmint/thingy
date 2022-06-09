@@ -1,3 +1,10 @@
+thingy (1.0.7) vanessa; urgency=medium
+
+  [ JosephMcc ]
+  * UI tweaks (#13)
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu, 09 Jun 2022 16:14:19 +0200
+
 thingy (1.0.6) una; urgency=medium
 
   * Update mimetype pictures

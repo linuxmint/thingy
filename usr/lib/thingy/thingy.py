@@ -329,9 +329,13 @@ class Window():
                 item.connect("activate", self.add_favorite, uri)
             menu.add(item)
             menu.add(Gtk.SeparatorMenuItem())
+            item = Gtk.MenuItem.new_with_label(_("Remove from library"))
+            item.connect("activate", self.remove_from_library, uri)
+            menu.add(item)
             item = Gtk.MenuItem.new_with_label(_("Move to trash"))
             item.connect("activate", self.trash, uri)
             menu.add(item)
+
             menu.show_all()
             menu.popup_at_pointer()
 
@@ -350,6 +354,10 @@ class Window():
     @_async
     def remove_favorite(self, item, uri):
         self.favorites_manager.remove(uri)
+
+    @_async
+    def remove_from_library(self, item, uri):
+        self.recent_manager.remove_item(uri)
 
     @_async
     def open_document(self, item, uri):

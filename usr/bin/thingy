@@ -1,2 +1,2 @@
 #!/bin/bash
-/home/soul/ssd1/projects/python/thingy/usr/lib/thingy/thingy.py "$@" &
+/usr/lib/thingy/thingy.py "$@" &

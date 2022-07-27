@@ -267,6 +267,8 @@ class Window():
             if current_page > 0:
                 progress = float(current_page) / float(num_pages)
                 bar = Gtk.ProgressBar()
+                if current_page == num_pages - 1:
+                    progress = 1
                 bar.set_fraction(progress)
                 bar.set_margin_start(50)
                 bar.set_margin_end(50)

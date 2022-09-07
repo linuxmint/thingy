@@ -1,4 +1,5 @@
 # Thingy
+![build](https://github.com/linuxmint/thingy/actions/workflows/build.yml/badge.svg)
 
 Thingy is used to quickly access recent and favorite documents.
 

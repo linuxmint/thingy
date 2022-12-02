@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2022-03-12 20:16+0000\n"
-"Last-Translator: Rony Alaluf <Unknown>\n"
+"PO-Revision-Date: 2022-10-29 05:08+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2022-07-24 09:43+0000\n"
-"X-Generator: Launchpad (build 025a39fd866a641b6ae33074cda0d02a2c712d38)\n"
+"X-Launchpad-Export-Date: 2022-12-02 14:13+0000\n"
+"X-Generator: Launchpad (build 51cef3d08dff1e227b5ada709bd67280c567d4be)\n"
 
 #: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
@@ -36,11 +36,11 @@ msgstr "פתיחה"
 
 #: usr/lib/thingy/thingy.py:287
 msgid "Open containing folder"
-msgstr "פתיחת התיקייה המכילה"
+msgstr "פתיחת תיקייה מכילה"
 
 #: usr/lib/thingy/thingy.py:292
 msgid "Remove from favorites"
-msgstr "הסרה מהמועדפים"
+msgstr "הסרה ממועדפים"
 
 #: usr/lib/thingy/thingy.py:295
 msgid "Add to favorites"
@@ -48,7 +48,7 @@ msgstr "הוספה למועדפים"
 
 #: usr/lib/thingy/thingy.py:299
 msgid "Move to trash"
-msgstr "העברה לאשפה"
+msgstr "העבר לסל־המיחזור"
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"
@@ -60,4 +60,4 @@ msgstr "לא נמצאו מסמכים"
 
 #: usr/share/thingy/thingy.ui.h:4
 msgid "You can add documents by opening them or by marking them as favorites"
-msgstr "ניתן להוסיף מסמכים עלי ידי פתיחתם או סימונם כמועדפים"
+msgstr "ניתן להוסיף מסמכים על־ידי פתיחתם או סימונם כמועדפים"

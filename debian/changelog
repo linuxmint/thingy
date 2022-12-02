@@ -1,3 +1,14 @@
+thingy (1.1.0) vera; urgency=medium
+
+  [ Michael Webster ]
+  * Add github workflow.
+
+  [ Clement Lefebvre ]
+  * l10n: Update translations
+  * l10n: Update files
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri, 02 Dec 2022 17:34:36 +0000
+
 thingy (1.0.9) vanessa; urgency=medium
 
   * l10n: Update translations

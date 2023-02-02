@@ -261,7 +261,7 @@ class Window():
         label.set_halign(Gtk.Align.CENTER)
 
         progress_tracked = False
-        if (num_pages != None and current_page != None):
+        if num_pages is not None and current_page is not None:
             num_pages = int(num_pages)
             current_page = int(current_page)
             if current_page > 0:
@@ -280,7 +280,7 @@ class Window():
 
         overlay = Gtk.Overlay()
 
-        if thumbnail_path != None:
+        if thumbnail_path is not None:
             pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(thumbnail_path, 198, 198)
         else:
             extension = os.path.splitext(uri)[1][1:].strip().lower()

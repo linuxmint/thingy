@@ -138,9 +138,13 @@ class Window():
         self.app_combo.set_model(self.app_model)
         self.app_combo.set_active(0) # Select 1st app
 
+        # Search
+        self.app_search = self.builder.get_object("app_search")
+
         self.load_documents()
 
         self.app_combo.connect("changed", self.on_app_changed)
+        self.app_search.connect("changed", self.on_search_changed)
         self.recent_manager.connect("changed", self.load_documents)
         self.favorites_manager.connect("changed", self.load_documents)
 
@@ -188,6 +192,38 @@ class Window():
 
     def on_app_changed(self, widget):
         self.load_documents()
+
+    def on_search_changed(self, widget):
+        search_text = self.app_search.get_text().lower().strip()
+        self.filter_documents(filter=search_text)
+    
+    @_async
+    def filter_documents(self, filter=None):
+        
+        self.documents = []
+        self.clear_flowbox()
+
+        if(len(filter) == 0):
+            return
+
+        #Favorites
+        items = self.favorites_manager.get_favorites(None)
+        for item in items:
+            if filter in item.get_display_name():
+                self.add_document_to_library(item.uri, "", True)
+
+        # Recent
+        documents = []
+        for recent in self.recent_manager.get_items():
+            if filter in recent.get_display_name():
+                documents.append(recent)
+    
+        documents = sorted(documents, key=lambda x: x.get_modified(), reverse=True)
+        
+        for item in documents:
+            self.add_document_to_library(item.get_uri(), "", False)
+
+        self.set_stack_page()
 
     @_async
     def load_documents(self, data=None):

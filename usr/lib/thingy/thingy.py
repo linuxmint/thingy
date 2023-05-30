@@ -66,6 +66,10 @@ class Window():
         self.application = application
         self.settings = Gio.Settings(schema_id="org.x.thingy")
 
+        # Dark mode manager
+        # keep a reference to it (otherwise it gets randomly garbage collected)
+        self.dark_mode_manager = XApp.DarkModeManager.new(prefer_dark_mode=False)
+
         self.recent_manager = Gtk.RecentManager()
         self.favorites_manager = XApp.Favorites.get_default()
 

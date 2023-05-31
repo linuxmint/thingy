@@ -130,7 +130,7 @@ class Window():
         self.app_model = Gtk.ListStore(object, str, str) # APP_INFO, APP_NAME, ID
         for app in SUPPORTED_APPS:
             for app_info in Gio.AppInfo.get_all():
-                if app_info.get_filename() == f"/usr/share/applications/{app}.desktop":
+                if os.path.basename(app_info.get_filename()) == f"{app}.desktop":
                     self.app_model.append([app_info, app_info.get_display_name(), app])
                     break
 

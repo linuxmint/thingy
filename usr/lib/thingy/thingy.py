@@ -234,7 +234,8 @@ class Window():
     @idle
     def add_document_to_library(self, uri, app_id, mark_as_favorite):
         # Ignore duplicates
-        if uri in self.documents:
+        real_path = os.path.realpath(uri)
+        if real_path in self.documents:
             return
         f = Gio.File.new_for_uri(uri)
         # Ignore non-existing paths
@@ -244,7 +245,7 @@ class Window():
         # Ignore hidden mimetypes
         if app_id in HIDDEN_MIMETYPES and info.get_content_type() in HIDDEN_MIMETYPES[app_id]:
             return
-        self.documents.append(uri)
+        self.documents.append(real_path)
         name = info.get_display_name()
         thumbnail_path = info.get_attribute_byte_string ("thumbnail::path")
         icon = info.get_attribute_object("standard::icon")

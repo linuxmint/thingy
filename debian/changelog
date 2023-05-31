@@ -1,3 +1,15 @@
+thingy (1.1.1) victoria; urgency=medium
+
+  [ hduelme ]
+  * replace equality None check with identity None check (#18)
+
+  [ Clement Lefebvre ]
+  * Add dark mode support
+  * Fix support for apps with .desktop outside of /usr/share/applications
+  * Duplicates: Take symbolic links into account
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed, 31 May 2023 15:39:40 +0100
+
 thingy (1.1.0) vera; urgency=medium
 
   [ Michael Webster ]

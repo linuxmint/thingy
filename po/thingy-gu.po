@@ -1,16 +1,16 @@
-# Hebrew translation for linuxmint
-# Copyright (c) 2021 Rosetta Contributors and Canonical Ltd 2021
+# Gujarati translation for linuxmint
+# Copyright (c) 2023 Rosetta Contributors and Canonical Ltd 2023
 # This file is distributed under the same license as the linuxmint package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2022-10-29 05:08+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
-"Language-Team: Hebrew <he@li.org>\n"
+"PO-Revision-Date: 2023-04-30 13:59+0000\n"
+"Last-Translator: Kiran Chauhan <kiranchauhan68@gmail.com>\n"
+"Language-Team: Gujarati <gu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,44 +20,45 @@ msgstr ""
 #: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
 msgid "Library"
-msgstr "ספרייה"
+msgstr "લાઇબ્રેરી"
 
 #: usr/lib/thingy/thingy.py:86 usr/lib/thingy/thingy.py:142
 msgid "About"
-msgstr "על אודות"
+msgstr "વિશે"
 
 #: usr/lib/thingy/thingy.py:91
 msgid "Quit"
-msgstr "יציאה"
+msgstr "બંધ કરો"
 
 #: usr/lib/thingy/thingy.py:284
 msgid "Open"
-msgstr "פתיחה"
+msgstr "ખોલો"
 
 #: usr/lib/thingy/thingy.py:287
 msgid "Open containing folder"
-msgstr "פתיחת תיקייה מכילה"
+msgstr "જેનો સમાવેશ કરે છે એ ફોલ્ડર ખોલો"
 
 #: usr/lib/thingy/thingy.py:292
 msgid "Remove from favorites"
-msgstr "הסרה ממועדפים"
+msgstr "મનપસંદમાંથી કાઢો"
 
 #: usr/lib/thingy/thingy.py:295
 msgid "Add to favorites"
-msgstr "הוספה למועדפים"
+msgstr "મનપસંદમાં નાખો"
 
 #: usr/lib/thingy/thingy.py:299
 msgid "Move to trash"
-msgstr "העבר לסל־המיחזור"
+msgstr "કચરાપેટીમાં નાખો"
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"
-msgstr "מסמכים אחרונים ומועדפים"
+msgstr "તાજેતરના અને મનપસંદ ડોક્યુમેન્ટ્સ"
 
 #: usr/share/thingy/thingy.ui.h:3
 msgid "No documents found"
-msgstr "לא נמצאו מסמכים"
+msgstr "ડોક્યુમેન્ટ્સ મળેલ નથી"
 
 #: usr/share/thingy/thingy.ui.h:4
 msgid "You can add documents by opening them or by marking them as favorites"
-msgstr "ניתן להוסיף מסמכים על־ידי פתיחתם או סימונם כמועדפים"
+msgstr ""
+"તમે ડોક્યુમેન્ટ્સને ખોલીને અથવા તેમને મનપસંદ તરીકે ચિહ્નિત કરીને ઉમેરી શકો છો"

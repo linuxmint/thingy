@@ -268,15 +268,16 @@ class Window():
         progress_tracked = False
         if num_pages is not None and current_page is not None:
             num_pages = int(num_pages)
-            current_page = int(current_page)
-            if current_page > 0:
-                progress = float(current_page) / float(num_pages)
-                bar = Gtk.ProgressBar()
-                bar.set_fraction(progress)
-                bar.set_margin_start(50)
-                bar.set_margin_end(50)
-                box.pack_end(bar, False, False, 0)
-                progress_tracked = True
+            if num_pages > 4:
+                current_page = int(current_page)
+                if current_page > 0:
+                    progress = float(current_page) / float(num_pages - 1)
+                    bar = Gtk.ProgressBar()
+                    bar.set_fraction(progress)
+                    bar.set_margin_start(50)
+                    bar.set_margin_end(50)
+                    box.pack_end(bar, False, False, 0)
+                    progress_tracked = True
 
         if not progress_tracked:
             box.pack_end(Gtk.Label(), False, False, 0)

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2023-03-19 17:13+0000\n"
+"PO-Revision-Date: 2023-08-05 06:02+0000\n"
 "Last-Translator: Mr.Ravi <Unknown>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2023-07-07 12:58+0000\n"
-"X-Generator: Launchpad (build 2ac9e3bf4ab511504f8fc651371e24a6a047ba12)\n"
+"X-Launchpad-Export-Date: 2023-12-03 13:35+0000\n"
+"X-Generator: Launchpad (build 886068b1e1d10de444fbd53b0c7d3f6d4fb3e658)\n"
 
 #: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
@@ -36,7 +36,7 @@ msgstr "بازکردن"
 
 #: usr/lib/thingy/thingy.py:287
 msgid "Open containing folder"
-msgstr "بازکردن پوشه حاوی پرونده"
+msgstr "بازکردن پوشه‌ی حاوی"
 
 #: usr/lib/thingy/thingy.py:292
 msgid "Remove from favorites"
@@ -48,11 +48,11 @@ msgstr "افزودن به علاقه‌مندی‌ها"
 
 #: usr/lib/thingy/thingy.py:299
 msgid "Move to trash"
-msgstr "انتقال به سطل زباله"
+msgstr "انتقال به زباله‌دان"
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"
-msgstr "پرونده های اخیر و مورد علاقه"
+msgstr "پرونده های اخیر و موردعلاقه"
 
 #: usr/share/thingy/thingy.ui.h:3
 msgid "No documents found"
@@ -61,4 +61,4 @@ msgstr "هیچ سندی پیدا نشد"
 #: usr/share/thingy/thingy.ui.h:4
 msgid "You can add documents by opening them or by marking them as favorites"
 msgstr ""
-"میتوانید با بازکردن یا علامت زدن به عنوان مورد علاقه اسناد را اضافه کنید"
+"میتوانید با بازکردن یا علامت زدن به عنوان موردعلاقه اسناد را اضافه کنید"

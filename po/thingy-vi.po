@@ -8,56 +8,58 @@ msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2021-11-13 13:02+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2024-03-29 15:49+0000\n"
+"Last-Translator: thieninox <Unknown>\n"
 "Language-Team: Vietnamese <vi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2024-01-04 14:59+0000\n"
-"X-Generator: Launchpad (build e1eeab5b20e19239bd7d5f36676f7a52988db88b)\n"
+"X-Launchpad-Export-Date: 2024-06-18 17:57+0000\n"
+"X-Generator: Launchpad (build bbfa2351d9d6a9ddfe262109428f7bf5516e65d1)\n"
 
 #: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
 msgid "Library"
-msgstr ""
+msgstr "Thư viện"
 
 #: usr/lib/thingy/thingy.py:86 usr/lib/thingy/thingy.py:142
 msgid "About"
-msgstr ""
+msgstr "Thông Tin"
 
 #: usr/lib/thingy/thingy.py:91
 msgid "Quit"
-msgstr ""
+msgstr "Thoát"
 
 #: usr/lib/thingy/thingy.py:284
 msgid "Open"
-msgstr ""
+msgstr "Mở"
 
 #: usr/lib/thingy/thingy.py:287
 msgid "Open containing folder"
-msgstr ""
+msgstr "Mở thư mục chứa"
 
 #: usr/lib/thingy/thingy.py:292
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Loại bỏ khỏi mục yêu thích"
 
 #: usr/lib/thingy/thingy.py:295
 msgid "Add to favorites"
-msgstr ""
+msgstr "Thêm vào mục yêu thích"
 
 #: usr/lib/thingy/thingy.py:299
 msgid "Move to trash"
-msgstr ""
+msgstr "Chuyển vào thùng rác"
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"
-msgstr ""
+msgstr "Các tệp tin gần đây và yêu thích"
 
 #: usr/share/thingy/thingy.ui.h:3
 msgid "No documents found"
-msgstr ""
+msgstr "Không tìm thấy tài liệu nào"
 
 #: usr/share/thingy/thingy.ui.h:4
 msgid "You can add documents by opening them or by marking them as favorites"
 msgstr ""
+"Bạn có thể thêm tài liệu bằng cách mở chúng hoặc đánh dấu chúng là mục yêu "
+"thích"

@@ -1,16 +1,16 @@
-# Rusyn translation for linuxmint
-# Copyright (c) 2022 Rosetta Contributors and Canonical Ltd 2022
+# Breton translation for linuxmint
+# Copyright (c) 2024 Rosetta Contributors and Canonical Ltd 2024
 # This file is distributed under the same license as the linuxmint package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2022-11-11 20:39+0000\n"
-"Last-Translator: Vondrosh tvmc <Unknown>\n"
-"Language-Team: Rusyn <rue@li.org>\n"
+"PO-Revision-Date: 2024-07-04 08:16+0000\n"
+"Last-Translator: Anthony Guechoum <a.guechoum@gmail.com>\n"
+"Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,45 +20,44 @@ msgstr ""
 #: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
 msgid "Library"
-msgstr "Бібліотека"
+msgstr "Levraoueg"
 
 #: usr/lib/thingy/thingy.py:86 usr/lib/thingy/thingy.py:142
 msgid "About"
-msgstr "За"
+msgstr "Diwar-benn"
 
 #: usr/lib/thingy/thingy.py:91
 msgid "Quit"
-msgstr "Уйти"
+msgstr "Kuitaat"
 
 #: usr/lib/thingy/thingy.py:284
 msgid "Open"
-msgstr "Одкрыти"
+msgstr "Digeriñ"
 
 #: usr/lib/thingy/thingy.py:287
 msgid "Open containing folder"
-msgstr "Одкрыти фасціклу мавучу у собі"
+msgstr "Digeriñ an teuliad a endalc'h ar restr"
 
 #: usr/lib/thingy/thingy.py:292
 msgid "Remove from favorites"
-msgstr "Удалити из облюбленых"
+msgstr ""
 
 #: usr/lib/thingy/thingy.py:295
 msgid "Add to favorites"
-msgstr "Придати у облюблені"
+msgstr ""
 
 #: usr/lib/thingy/thingy.py:299
 msgid "Move to trash"
-msgstr "Веричи у смітя"
+msgstr "Kas d'al lastez"
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"
-msgstr "Послїдні ай облюблені документы"
+msgstr ""
 
 #: usr/share/thingy/thingy.ui.h:3
 msgid "No documents found"
-msgstr "Не найшли сьме документув"
+msgstr "N'eus bet kavet teul ebet"
 
 #: usr/share/thingy/thingy.ui.h:4
 msgid "You can add documents by opening them or by marking them as favorites"
 msgstr ""
-"Вы можете придавати документы, одкрывавучи їх вадь позначити їх ги облюблені."

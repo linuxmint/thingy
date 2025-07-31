@@ -1,16 +1,16 @@
-# Kurdish, Central translation for linuxmint
-# Copyright (c) 2024 Rosetta Contributors and Canonical Ltd 2024
+# Macedonian translation for linuxmint
+# Copyright (c) 2025 Rosetta Contributors and Canonical Ltd 2025
 # This file is distributed under the same license as the linuxmint package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2024-05-17 01:02+0000\n"
-"Last-Translator: rasti <Unknown>\n"
-"Language-Team: Kurdish, Central <ckb@li.org>\n"
+"PO-Revision-Date: 2025-01-18 19:33+0000\n"
+"Last-Translator: Bojan Stojanoski <Unknown>\n"
+"Language-Team: Macedonian <mk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,44 +20,45 @@ msgstr ""
 #: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
 msgid "Library"
-msgstr ""
+msgstr "Библиотека"
 
 #: usr/lib/thingy/thingy.py:86 usr/lib/thingy/thingy.py:142
 msgid "About"
-msgstr "دەربارە"
+msgstr "За"
 
 #: usr/lib/thingy/thingy.py:91
 msgid "Quit"
-msgstr "دەرچوون"
+msgstr "Откажи"
 
 #: usr/lib/thingy/thingy.py:284
 msgid "Open"
-msgstr "کردنەوە"
+msgstr "Отвори"
 
 #: usr/lib/thingy/thingy.py:287
 msgid "Open containing folder"
-msgstr ""
+msgstr "Отворете ја папката што содржи"
 
 #: usr/lib/thingy/thingy.py:292
 msgid "Remove from favorites"
-msgstr "سڕینەوە لە دڵخوازەکان"
+msgstr "Отстрани од омилени"
 
 #: usr/lib/thingy/thingy.py:295
 msgid "Add to favorites"
-msgstr ""
+msgstr "Додадете во омилени"
 
 #: usr/lib/thingy/thingy.py:299
 msgid "Move to trash"
-msgstr ""
+msgstr "Премести во ѓубре"
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"
-msgstr ""
+msgstr "Неодамнешни и омилени документи"
 
 #: usr/share/thingy/thingy.ui.h:3
 msgid "No documents found"
-msgstr ""
+msgstr "Не се пронајдени документи"
 
 #: usr/share/thingy/thingy.ui.h:4
 msgid "You can add documents by opening them or by marking them as favorites"
 msgstr ""
+"Можете да додавате документи со отворање или со означување како омилени"

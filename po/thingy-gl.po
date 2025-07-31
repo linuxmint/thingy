@@ -1,16 +1,16 @@
-# Kurdish, Central translation for linuxmint
-# Copyright (c) 2024 Rosetta Contributors and Canonical Ltd 2024
+# Galician translation for linuxmint
+# Copyright (c) 2025 Rosetta Contributors and Canonical Ltd 2025
 # This file is distributed under the same license as the linuxmint package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2024-05-17 01:02+0000\n"
-"Last-Translator: rasti <Unknown>\n"
-"Language-Team: Kurdish, Central <ckb@li.org>\n"
+"PO-Revision-Date: 2025-05-01 18:56+0000\n"
+"Last-Translator: Eloi Barcón Piñeiro <Unknown>\n"
+"Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,19 +20,19 @@ msgstr ""
 #: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
 msgid "Library"
-msgstr ""
+msgstr "Biblioteca"
 
 #: usr/lib/thingy/thingy.py:86 usr/lib/thingy/thingy.py:142
 msgid "About"
-msgstr "دەربارە"
+msgstr "Acerca de"
 
 #: usr/lib/thingy/thingy.py:91
 msgid "Quit"
-msgstr "دەرچوون"
+msgstr "Saír"
 
 #: usr/lib/thingy/thingy.py:284
 msgid "Open"
-msgstr "کردنەوە"
+msgstr "Abrir"
 
 #: usr/lib/thingy/thingy.py:287
 msgid "Open containing folder"
@@ -40,24 +40,24 @@ msgstr ""
 
 #: usr/lib/thingy/thingy.py:292
 msgid "Remove from favorites"
-msgstr "سڕینەوە لە دڵخوازەکان"
+msgstr "Eliminar dos favoritos"
 
 #: usr/lib/thingy/thingy.py:295
 msgid "Add to favorites"
-msgstr ""
+msgstr "Engadir a favoritos"
 
 #: usr/lib/thingy/thingy.py:299
 msgid "Move to trash"
-msgstr ""
+msgstr "Mover ao lixo"
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"
-msgstr ""
+msgstr "Documentos recentes e favoritos"
 
 #: usr/share/thingy/thingy.ui.h:3
 msgid "No documents found"
-msgstr ""
+msgstr "Non se atoparon documentos"
 
 #: usr/share/thingy/thingy.ui.h:4
 msgid "You can add documents by opening them or by marking them as favorites"
-msgstr ""
+msgstr "Podes engadir documentos abríndoos ou marcándoos como favoritos"

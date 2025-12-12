@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2024-07-04 08:16+0000\n"
+"PO-Revision-Date: 2025-11-12 14:22+0000\n"
 "Last-Translator: Anthony Guechoum <a.guechoum@proton.me>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2025-07-31 09:25+0000\n"
-"X-Generator: Launchpad (build 647c49fc7f614412c17a151d8ba4fadd90c06a00)\n"
+"X-Launchpad-Export-Date: 2025-12-12 13:33+0000\n"
+"X-Generator: Launchpad (build 379e22b8475e3402088a4cdb4a6e7936a4d28414)\n"
 
 #: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
@@ -40,11 +40,11 @@ msgstr "Digeriñ an teuliad a endalc'h ar restr"
 
 #: usr/lib/thingy/thingy.py:292
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Dilemel diwar ma re well ganin"
 
 #: usr/lib/thingy/thingy.py:295
 msgid "Add to favorites"
-msgstr ""
+msgstr "Ouzhpennañ d'am re well ganin"
 
 #: usr/lib/thingy/thingy.py:299
 msgid "Move to trash"
@@ -52,7 +52,7 @@ msgstr "Kas d'al lastez"
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"
-msgstr ""
+msgstr "Teulioù gwell ganin pe kemmet nevez zo"
 
 #: usr/share/thingy/thingy.ui.h:3
 msgid "No documents found"
@@ -61,3 +61,5 @@ msgstr "N'eus bet kavet teul ebet"
 #: usr/share/thingy/thingy.ui.h:4
 msgid "You can add documents by opening them or by marking them as favorites"
 msgstr ""
+"Gallout a rit ouzhpennañ teulioù amañ dre zigeriñ anezho pe dre ouzhpennañ "
+"anezho d'ho re well ganeoc'h"

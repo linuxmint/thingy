@@ -1,3 +1,10 @@
+thingy (1.2.3) zena; urgency=medium
+
+  * l10n: Update translations
+  * l10n: Update files
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri, 12 Dec 2025 17:03:11 +0000
+
 thingy (1.2.2) zena; urgency=medium
 
   * Switch to XApp symbolic icons

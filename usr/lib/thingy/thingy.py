@@ -20,7 +20,7 @@ gettext.bindtextdomain(APP, LOCALE_DIR)
 gettext.textdomain(APP)
 _ = gettext.gettext
 
-SUPPORTED_APPS = ["xreader"]
+SUPPORTED_APPS = ["xreader", "atril", "org.gnome.Evince", "org.gnome.Papers"]
 SUPPORTED_APPS += ["libreoffice-calc", "libreoffice-writer", "libreoffice-draw", "libreoffice-impress", "libreoffice-base"]
 
 HIDDEN_MIMETYPES = {}

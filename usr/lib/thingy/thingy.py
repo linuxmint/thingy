@@ -166,13 +166,7 @@ class Window():
         dlg.set_title(_("About"))
         dlg.set_program_name("thingy")
         dlg.set_comments(_("Library"))
-        try:
-            with open('/usr/share/common-licenses/GPL', encoding="utf-8") as h:
-                gpl = h.read()
-            dlg.set_license(gpl)
-        except Exception as e:
-            print (e)
-
+        dlg.set_license_type(Gtk.License.GPL_3_0)
         dlg.set_version("__DEB_VERSION__")
         dlg.set_icon_name("thingy")
         dlg.set_logo_icon_name("thingy")

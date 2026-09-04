@@ -423,6 +423,10 @@ class Window():
                 item = Gtk.MenuItem.new_with_label(_("Add to favorites"))
                 item.connect("activate", self.add_favorite, uri)
             menu.add(item)
+            item = Gtk.MenuItem.new_with_label(_("Remove from recent documents"))
+            item.connect("activate", self.remove_from_recents, uri)
+            item.set_sensitive(self.recent_manager.has_item(uri))
+            menu.add(item)
             menu.add(Gtk.SeparatorMenuItem())
             item = Gtk.MenuItem.new_with_label(_("Move to trash"))
             item.connect("activate", self.trash, uri)
@@ -445,6 +449,12 @@ class Window():
     @_async
     def remove_favorite(self, item, uri):
         self.favorites_manager.remove(uri)
+
+    def remove_from_recents(self, item, uri):
+        try:
+            self.recent_manager.remove_item(uri)
+        except GLib.Error as e:
+            print(e)
 
     @_async
     def open_document(self, item, uri):

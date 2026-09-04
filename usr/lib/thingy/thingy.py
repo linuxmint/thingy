@@ -110,7 +110,7 @@ class Window():
         menu.append(item)
         menu.show_all()
 
-        self.flowbox = self.builder.get_object("flowbox")
+        self.app_stack = self.builder.get_object("app_stack")
 
         # Preserve window state
         self.width = self.settings.get_int("width")
@@ -127,26 +127,70 @@ class Window():
         self.window.connect("destroy", self.on_window_destroyed)
 
         # Load data
-        self.app_model = Gtk.ListStore(object, str, str) # APP_INFO, APP_NAME, ID
+        self.apps = {}
         for app in SUPPORTED_APPS:
             for app_info in Gio.AppInfo.get_all():
                 if os.path.basename(app_info.get_filename()) == f"{app}.desktop":
-                    self.app_model.append([app_info, app_info.get_display_name(), app])
+                    page, flowbox, content_stack = self.create_app_page()
+                    self.apps[app] = (app_info, flowbox, content_stack)
+                    self.app_stack.add_titled(page, app, app_info.get_display_name())
+                    icon = app_info.get_icon()
+                    if icon is not None:
+                        self.app_stack.child_set_property(page, "icon-name", icon.to_string())
                     break
 
-        # Combo
-        self.app_combo = self.builder.get_object("app_combo")
-        renderer = Gtk.CellRendererText()
-        self.app_combo.pack_start(renderer, True)
-        self.app_combo.add_attribute(renderer, "text", 1)
-        self.app_combo.set_model(self.app_model)
-        self.app_combo.set_active(0) # Select 1st app
-
-        self.load_documents()
-
-        self.app_combo.connect("changed", self.on_app_changed)
+        self.app_stack.connect("notify::visible-child-name", self.on_app_changed)
+        if self.apps:
+            self.app_stack.set_visible_child_name(next(iter(self.apps)))
+            self.load_documents()
         self.recent_manager.connect("changed", self.load_documents)
         self.favorites_manager.connect("changed", self.load_documents)
+
+    def create_app_page(self):
+        page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        content_stack = Gtk.Stack()
+        content_stack.set_hexpand(True)
+        content_stack.set_vexpand(True)
+
+        scrolled = Gtk.ScrolledWindow()
+        viewport = Gtk.Viewport()
+        viewport.set_shadow_type(Gtk.ShadowType.NONE)
+        viewport.get_style_context().add_class("view")
+        flowbox = Gtk.FlowBox()
+        flowbox.set_valign(Gtk.Align.START)
+        flowbox.set_margin_start(8)
+        flowbox.set_margin_end(8)
+        flowbox.set_margin_top(8)
+        flowbox.set_margin_bottom(8)
+        flowbox.set_homogeneous(True)
+        flowbox.set_min_children_per_line(1)
+        flowbox.set_max_children_per_line(10)
+        viewport.add(flowbox)
+        scrolled.add(viewport)
+        content_stack.add_named(scrolled, "page_documents")
+
+        empty = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
+        empty.set_halign(Gtk.Align.CENTER)
+        empty.set_valign(Gtk.Align.CENTER)
+        image = Gtk.Image.new_from_icon_name("xsi-emblem-documents-symbolic", Gtk.IconSize.DIALOG)
+        image.set_pixel_size(96)
+        image.set_margin_bottom(20)
+        image.get_style_context().add_class("dim-label")
+        empty.pack_start(image, False, False, 0)
+        title = Gtk.Label(label=_("No documents found"))
+        title.set_markup("<span weight=\"bold\" size=\"large\">%s</span>" %
+                         GLib.markup_escape_text(_("No documents found")))
+        title.get_style_context().add_class("dim-label")
+        empty.pack_start(title, False, False, 0)
+        description = Gtk.Label(label=_("You can add documents by opening them or by marking them as favorites"))
+        description.set_line_wrap(True)
+        description.get_style_context().add_class("dim-label")
+        empty.pack_start(description, False, False, 0)
+        content_stack.add_named(empty, "page_empty")
+        content_stack.get_style_context().add_class("view")
+        page.pack_start(content_stack, True, True, 0)
+        page.show_all()
+        return page, flowbox, content_stack
 
     def on_window_resized(self, window, allocation):
         self.width = allocation.width
@@ -186,7 +230,7 @@ class Window():
     def on_menu_quit(self, widget):
         self.application.quit()
 
-    def on_app_changed(self, widget):
+    def on_app_changed(self, widget, param):
         self.load_documents()
 
     @_async
@@ -194,8 +238,10 @@ class Window():
         self.documents = []
         self.clear_flowbox()
 
-        app_info = self.app_combo.get_model()[self.app_combo.get_active()][0]
-        app_id = self.app_combo.get_model()[self.app_combo.get_active()][2]
+        app_id = self.app_stack.get_visible_child_name()
+        if app_id not in self.apps:
+            return
+        app_info, self.flowbox, self.content_stack = self.apps[app_id]
         app_mime_types = app_info.get_supported_types()
 
         # Favorites
@@ -218,9 +264,9 @@ class Window():
     @idle
     def set_stack_page(self):
         if len(self.documents) > 0:
-            self.builder.get_object("stack").set_visible_child_name("page_documents")
+            self.content_stack.set_visible_child_name("page_documents")
         else:
-            self.builder.get_object("stack").set_visible_child_name("page_empty")
+            self.content_stack.set_visible_child_name("page_empty")
 
     @idle
     def clear_flowbox(self):
@@ -412,4 +458,3 @@ class Window():
 if __name__ == "__main__":
     application = Application("org.x.thingy", Gio.ApplicationFlags.FLAGS_NONE)
     application.run()
-

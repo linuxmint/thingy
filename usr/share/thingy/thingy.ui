@@ -2,6 +2,7 @@
 <!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <requires lib="xapp" version="0.0"/>
   <object class="GtkMenu" id="main_menu">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -37,15 +38,6 @@
           </object>
         </child>
         <child>
-          <object class="GtkComboBox" id="app_combo">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
           <placeholder/>
         </child>
         <child>
@@ -60,136 +52,29 @@
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
+        <property name="orientation">horizontal</property>
         <child>
-          <object class="GtkStack" id="stack">
+          <object class="XAppStackSidebar" id="app_sidebar">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <child>
-              <object class="GtkScrolledWindow">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="propagate_natural_width">True</property>
-                <property name="propagate_natural_height">True</property>
-                <child>
-                  <object class="GtkViewport">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="shadow_type">none</property>
-                    <child>
-                      <object class="GtkFlowBox" id="flowbox">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="valign">start</property>
-                        <property name="margin_left">8</property>
-                        <property name="margin_right">8</property>
-                        <property name="margin_top">8</property>
-                        <property name="margin_bottom">8</property>
-                        <property name="homogeneous">True</property>
-                        <property name="min_children_per_line">1</property>
-                        <property name="max_children_per_line">10</property>
-                      </object>
-                    </child>
-                    <style>
-                      <class name="view"/>
-                    </style>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="name">page_documents</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <property name="orientation">vertical</property>
-                <property name="spacing">12</property>
-                <child>
-                  <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="halign">center</property>
-                    <property name="valign">center</property>
-                    <property name="orientation">vertical</property>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="margin_bottom">20</property>
-                        <property name="pixel_size">96</property>
-                        <property name="icon_name">xsi-emblem-documents-symbolic</property>
-                        <property name="icon_size">6</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="margin_bottom">8</property>
-                        <property name="label" translatable="yes">No documents found</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                          <attribute name="scale" value="1.2"/>
-                        </attributes>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">You can add documents by opening them or by marking them as favorites</property>
-                        <property name="wrap">True</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-              </object>
-              <packing>
-                <property name="name">page_empty</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <style>
-              <class name="view"/>
-            </style>
+            <property name="stack">app_stack</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkStack" id="app_stack">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="transition_type">crossfade</property>
           </object>
           <packing>
             <property name="expand">True</property>
             <property name="fill">True</property>
-            <property name="position">0</property>
+            <property name="position">1</property>
           </packing>
         </child>
       </object>

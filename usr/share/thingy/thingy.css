@@ -18,3 +18,15 @@
 .thingy-button:hover .thingy-image {
 	box-shadow: 4px 4px 6px alpha(black, 0.4);
 }
+
+stacksidebar row {
+	padding: 12px 10px;
+}
+
+stacksidebar image {
+	margin: 5px;
+}
+
+stacksidebar label {
+	font-size: 1.15em;
+}

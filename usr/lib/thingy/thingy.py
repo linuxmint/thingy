@@ -20,12 +20,33 @@ gettext.bindtextdomain(APP, LOCALE_DIR)
 gettext.textdomain(APP)
 _ = gettext.gettext
 
-SUPPORTED_APPS = ["xreader", "xepub"]
-SUPPORTED_APPS += ["libreoffice-calc", "libreoffice-writer", "libreoffice-draw", "libreoffice-impress", "libreoffice-base"]
-
-HIDDEN_MIMETYPES = {}
-HIDDEN_MIMETYPES["libreoffice-writer"] = ["text/plain"]
-HIDDEN_MIMETYPES["libreoffice-draw"] = ["application/pdf"]
+DOCUMENT_CATEGORIES = [
+    ("books", _("Books"), "xepub", (
+        "application/epub+zip", "application/x-mobipocket-ebook",
+        "application/vnd.amazon.mobi8-ebook", "application/x-fictionbook+xml",
+        "application/x-sony-bbeb",
+    )),
+    ("documents", _("PDFs"), "accessories-document-viewer", (
+        "application/pdf", "application/postscript", "application/oxps",
+        "application/vnd.ms-xpsdocument", "image/vnd.djvu",
+        "image/vnd.djvu+multipage", "application/rtf", "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/vnd.oasis.opendocument.text",
+    )),
+    ("text-files", _("Text Files"), "accessories-text-editor", (
+        "text/plain", "text/markdown", "text/x-markdown",
+    )),
+    ("spreadsheets", _("Spreadsheets"), "libreoffice-calc", (
+        "text/csv", "application/vnd.ms-excel",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "application/vnd.oasis.opendocument.spreadsheet",
+    )),
+    ("presentations", _("Presentations"), "libreoffice-impress", (
+        "application/vnd.ms-powerpoint",
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        "application/vnd.oasis.opendocument.presentation",
+    ))
+]
 
 # Used as a decorator to run things in the background
 def _async(func):
@@ -127,26 +148,36 @@ class Window():
         self.window.connect("destroy", self.on_window_destroyed)
 
         # Load data
-        self.apps = {}
-        for app in SUPPORTED_APPS:
-            for app_info in Gio.AppInfo.get_all():
-                if os.path.basename(app_info.get_filename()) == f"{app}.desktop":
-                    page, flowbox, content_stack = self.create_app_page()
-                    self.apps[app] = (app_info, flowbox, content_stack)
-                    self.app_stack.add_titled(page, app, app_info.get_display_name())
-                    icon = app_info.get_icon()
-                    if icon is not None:
-                        self.app_stack.child_set_property(page, "icon-name", icon.to_string())
-                    break
+        self.categories = {}
+        for category_id, title, icon, mime_types in DOCUMENT_CATEGORIES:
+            page, flowbox, content_stack = self.create_category_page()
+            self.categories[category_id] = (mime_types, flowbox, content_stack)
+            self.app_stack.add_titled(page, category_id, title)
+            self.app_stack.child_set_property(page, "icon-name", icon)
+
+        self.set_sidebar_icon_size(self.builder.get_object("app_sidebar"))
 
         self.app_stack.connect("notify::visible-child-name", self.on_app_changed)
-        if self.apps:
-            self.app_stack.set_visible_child_name(next(iter(self.apps)))
+        if self.categories:
+            self.app_stack.set_visible_child_name(next(iter(self.categories)))
             self.load_documents()
         self.recent_manager.connect("changed", self.load_documents)
         self.favorites_manager.connect("changed", self.load_documents)
 
-    def create_app_page(self):
+    def set_sidebar_icon_size(self, widget):
+        if isinstance(widget, Gtk.Image):
+            storage_type = widget.get_storage_type()
+            if storage_type == Gtk.ImageType.ICON_NAME:
+                icon_name, unused_size = widget.get_icon_name()
+                widget.set_from_icon_name(icon_name, Gtk.IconSize.DND)
+            elif storage_type == Gtk.ImageType.GICON:
+                gicon, unused_size = widget.get_gicon()
+                widget.set_from_gicon(gicon, Gtk.IconSize.DND)
+        elif isinstance(widget, Gtk.Container):
+            for child in widget.get_children():
+                self.set_sidebar_icon_size(child)
+
+    def create_category_page(self):
         page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         content_stack = Gtk.Stack()
         content_stack.set_hexpand(True)
@@ -238,26 +269,25 @@ class Window():
         self.documents = []
         self.clear_flowbox()
 
-        app_id = self.app_stack.get_visible_child_name()
-        if app_id not in self.apps:
+        category_id = self.app_stack.get_visible_child_name()
+        if category_id not in self.categories:
             return
-        app_info, self.flowbox, self.content_stack = self.apps[app_id]
-        app_mime_types = app_info.get_supported_types()
+        mime_types, self.flowbox, self.content_stack = self.categories[category_id]
 
         # Favorites
         items = self.favorites_manager.get_favorites(None)
         for item in items:
-            if item.cached_mimetype in app_mime_types:
-                self.add_document_to_library(item.uri, app_id, True)
+            if item.cached_mimetype in mime_types:
+                self.add_document_to_library(item.uri, True)
 
         # Recent
         documents = []
         for recent in self.recent_manager.get_items():
-            if recent.get_mime_type() in app_mime_types:
+            if recent.get_mime_type() in mime_types:
                 documents.append(recent)
         documents = sorted(documents, key=lambda x: x.get_modified(), reverse=True)
         for item in documents:
-            self.add_document_to_library(item.get_uri(), app_id, False)
+            self.add_document_to_library(item.get_uri(), False)
 
         self.set_stack_page()
 
@@ -274,7 +304,7 @@ class Window():
             self.flowbox.remove(child)
 
     @idle
-    def add_document_to_library(self, uri, app_id, mark_as_favorite):
+    def add_document_to_library(self, uri, mark_as_favorite):
         # Ignore duplicates
         real_path = os.path.realpath(uri)
         if real_path in self.documents:
@@ -284,9 +314,6 @@ class Window():
         if not (f.is_native() and os.path.exists(f.get_path())):
             return
         info = f.query_info('*', Gio.FileQueryInfoFlags.NONE, None)
-        # Ignore hidden mimetypes
-        if app_id in HIDDEN_MIMETYPES and info.get_content_type() in HIDDEN_MIMETYPES[app_id]:
-            return
         self.documents.append(real_path)
         name = info.get_display_name()
         thumbnail_path = info.get_attribute_byte_string ("thumbnail::path")

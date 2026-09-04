@@ -20,7 +20,7 @@ gettext.bindtextdomain(APP, LOCALE_DIR)
 gettext.textdomain(APP)
 _ = gettext.gettext
 
-SUPPORTED_APPS = ["xreader"]
+SUPPORTED_APPS = ["xreader", "xepub"]
 SUPPORTED_APPS += ["libreoffice-calc", "libreoffice-writer", "libreoffice-draw", "libreoffice-impress", "libreoffice-base"]
 
 HIDDEN_MIMETYPES = {}
@@ -247,6 +247,9 @@ class Window():
         icon = info.get_attribute_object("standard::icon")
         current_page = info.get_attribute_string("metadata::xreader::page")
         num_pages = info.get_attribute_string("metadata::xreader::num-pages")
+        epub_progress = info.get_attribute_string("metadata::xepub::progress")
+        epub_title = info.get_attribute_string("metadata::xepub::title")
+        epub_author = info.get_attribute_string("metadata::xepub::author")
 
         button = Gtk.Button()
         button.get_style_context().add_class("thingy-button")
@@ -256,13 +259,28 @@ class Window():
         button.set_relief(Gtk.ReliefStyle.NONE)
         button.set_tooltip_text(f.get_path())
         button.connect("button-press-event", self.on_button_pressed, uri, mark_as_favorite)
-        label = Gtk.Label(label=name)
+        label = Gtk.Label(label=epub_title or name)
         label.set_max_width_chars(25)
         label.set_ellipsize(Pango.EllipsizeMode.END)
         label.set_halign(Gtk.Align.CENTER)
 
+        author_label = None
+        if epub_author:
+            author_label = Gtk.Label(label=epub_author)
+            author_label.set_max_width_chars(25)
+            author_label.set_ellipsize(Pango.EllipsizeMode.END)
+            author_label.set_halign(Gtk.Align.CENTER)
+            author_label.get_style_context().add_class("dim-label")
+
         progress_tracked = False
-        if num_pages is not None and current_page is not None:
+        if epub_progress is not None:
+            bar = Gtk.ProgressBar()
+            bar.set_fraction(max(0.0, min(1.0, int(epub_progress) / 100.0)))
+            bar.set_margin_start(50)
+            bar.set_margin_end(50)
+            box.pack_end(bar, False, False, 0)
+            progress_tracked = True
+        elif num_pages is not None and current_page is not None:
             num_pages = int(num_pages)
             if num_pages > 4:
                 current_page = int(current_page)
@@ -278,6 +296,8 @@ class Window():
         if not progress_tracked:
             box.pack_end(Gtk.Label(), False, False, 0)
 
+        if author_label:
+            box.pack_end(author_label, False, False, 0)
         box.pack_end(label, False, False, 0)
 
         overlay = Gtk.Overlay()

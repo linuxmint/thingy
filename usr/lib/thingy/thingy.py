@@ -163,6 +163,10 @@ class Window():
         item.set_label(_("Groups"))
         item.connect("activate", self.open_groups)
         menu.append(item)
+        item = Gtk.MenuItem()
+        item.set_label(_("Clear Recent Documents"))
+        item.connect("activate", self.clear_recent_documents)
+        menu.append(item)
         menu.append(Gtk.SeparatorMenuItem())
         item = Gtk.MenuItem()
         item.set_label(_("About"))
@@ -393,6 +397,25 @@ class Window():
         self.settings.set_int("width", self.width)
         self.settings.set_int("height", self.height)
         self.settings.set_boolean("maximized", self.maximized)
+
+    def clear_recent_documents(self, widget):
+        dialog = Gtk.MessageDialog(
+            transient_for=self.window, modal=True,
+            message_type=Gtk.MessageType.WARNING,
+            buttons=Gtk.ButtonsType.CANCEL,
+            text=_("Clear all recent documents?"))
+        dialog.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
+        dialog.format_secondary_text(
+            _("This clears the history of recent documents for all applications."))
+        clear_button = dialog.add_button(_("Clear"), Gtk.ResponseType.OK)
+        clear_button.get_style_context().add_class("destructive-action")
+        response = dialog.run()
+        dialog.destroy()
+        if response == Gtk.ResponseType.OK:
+            try:
+                self.recent_manager.purge_items()
+            except GLib.Error as e:
+                print("Could not clear recent documents: %s" % e)
 
     def open_groups(self, widget):
         dialog = Gtk.Dialog(title=_("Groups"), transient_for=self.window,

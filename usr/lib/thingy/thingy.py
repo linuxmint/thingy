@@ -423,12 +423,12 @@ class Window():
         group_frame.add(group_scroll)
         content.pack_start(group_frame, True, True, 0)
         controls = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-        add_button = Gtk.Button.new_with_label(_("Add"))
-        edit_button = Gtk.Button.new_with_label(_("Edit"))
-        delete_button = Gtk.Button.new_with_label(_("Delete"))
+        add_button = self.create_icon_button("list-add-symbolic", _("Add"))
+        edit_button = self.create_icon_button("document-edit-symbolic", _("Edit"))
+        delete_button = self.create_icon_button("edit-delete-symbolic", _("Delete"))
         reset_button = Gtk.Button.new_with_label(_("Reset to Defaults"))
-        up_button = Gtk.Button.new_with_label(_("Move Up"))
-        down_button = Gtk.Button.new_with_label(_("Move Down"))
+        up_button = self.create_icon_button("go-up-symbolic", _("Move Up"))
+        down_button = self.create_icon_button("go-down-symbolic", _("Move Down"))
         edit_button.set_sensitive(False)
         delete_button.set_sensitive(False)
         up_button.set_sensitive(False)
@@ -455,6 +455,12 @@ class Window():
         dialog.show_all()
         dialog.run()
         dialog.destroy()
+
+    @staticmethod
+    def create_icon_button(icon_name, tooltip):
+        button = Gtk.Button.new_from_icon_name(icon_name, Gtk.IconSize.BUTTON)
+        button.set_tooltip_text(tooltip)
+        return button
 
     def reset_groups(self, button, parent, listbox):
         prompt = Gtk.MessageDialog(
@@ -626,7 +632,7 @@ class Window():
             self.load_documents()
 
     def run_group_editor(self, parent, group=None):
-        dialog = Gtk.Dialog(title=_("Edit Document Group") if group else _("New Document Group"),
+        dialog = Gtk.Dialog(title=_("Group"),
                             transient_for=parent, modal=True, destroy_with_parent=True)
         dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
         dialog.add_button(_("Save"), Gtk.ResponseType.OK)
@@ -658,7 +664,7 @@ class Window():
         type_view.set_hexpand(True)
         type_view.set_vexpand(True)
         renderer = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn(_("File type"), renderer, text=1)
+        column = Gtk.TreeViewColumn("", renderer, text=1)
         type_view.append_column(column)
         type_scroll = Gtk.ScrolledWindow(min_content_height=120)
         type_scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
@@ -672,15 +678,15 @@ class Window():
         type_frame.set_vexpand(True)
         type_frame.add(type_scroll)
         type_controls = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-        add_type_button = Gtk.Button.new_with_label(_("Add File Types"))
-        remove_type_button = Gtk.Button.new_with_label(_("Remove"))
+        add_type_button = self.create_icon_button("list-add-symbolic", _("Add"))
+        remove_type_button = self.create_icon_button("list-remove-symbolic", _("Remove"))
         remove_type_button.set_sensitive(False)
         type_controls.pack_start(add_type_button, False, False, 0)
         type_controls.pack_start(remove_type_button, False, False, 0)
         type_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         type_box.set_hexpand(True)
         type_box.set_vexpand(True)
-        hint = Gtk.Label(label=_("Choose example files to add their types."), xalign=0)
+        hint = Gtk.Label(label=_("Choose files to add their types."), xalign=0)
         hint.get_style_context().add_class("dim-label")
         type_box.pack_start(hint, False, False, 0)
         type_box.pack_start(type_frame, True, True, 0)
@@ -698,7 +704,7 @@ class Window():
         grid.attach(name_entry, 1, 0, 1, 1)
         grid.attach(Gtk.Label(label=_("Icon"), xalign=1), 0, 1, 1, 1)
         grid.attach(icon_button, 1, 1, 1, 1)
-        grid.attach(Gtk.Label(label=_("File types"), xalign=1, valign=Gtk.Align.START), 0, 2, 1, 1)
+        grid.attach(Gtk.Label(label=_("File Types"), xalign=1, valign=Gtk.Align.START), 0, 2, 1, 1)
         grid.attach(type_box, 1, 2, 1, 1)
         grid.attach(path_toggle, 1, 3, 1, 1)
         grid.attach(path_button, 1, 4, 1, 1)

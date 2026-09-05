@@ -222,6 +222,9 @@ class Window():
             default["hidden_builtin_groups"] = [item for item in hidden if isinstance(item, str)]
             default["custom_groups"] = [item for item in custom if self.valid_custom_group(item)]
             default["group_order"] = [item for item in order if isinstance(item, str)]
+            active_group = config.get("active_group")
+            if isinstance(active_group, str):
+                default["active_group"] = active_group
         except (OSError, ValueError, json.JSONDecodeError) as e:
             if not isinstance(e, FileNotFoundError):
                 print("Could not load document groups: %s" % e)
@@ -232,6 +235,8 @@ class Window():
             default["group_order"].insert(0, "favorites")
         default["group_order"].extend(item for item in valid_ids
                                       if item not in default["group_order"])
+        if default["active_group"] not in valid_ids:
+            default["active_group"] = "favorites"
         return default
 
     @staticmethod
@@ -240,6 +245,7 @@ class Window():
             "hidden_builtin_groups": list(DEFAULT_HIDDEN_GROUPS),
             "custom_groups": [],
             "group_order": [category[0] for category in DOCUMENT_CATEGORIES],
+            "active_group": "favorites",
         }
 
     @staticmethod
@@ -265,7 +271,8 @@ class Window():
             print("Could not save document groups: %s" % e)
 
     def rebuild_categories(self):
-        selected = self.app_stack.get_visible_child_name()
+        selected = (self.app_stack.get_visible_child_name() or
+                    self.groups_config.get("active_group"))
         for child in self.app_stack.get_children():
             self.app_stack.remove(child)
 
@@ -803,6 +810,11 @@ class Window():
         self.application.quit()
 
     def on_app_changed(self, widget, param):
+        category_id = self.app_stack.get_visible_child_name()
+        if (category_id in self.categories and
+                category_id != self.groups_config.get("active_group")):
+            self.groups_config["active_group"] = category_id
+            self.save_groups_config()
         self.load_documents()
 
     @_async

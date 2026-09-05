@@ -37,7 +37,8 @@ DOCUMENT_CATEGORIES = [
         "application/vnd.oasis.opendocument.text",
     )),
     ("text-files", _("Text Files"), "accessories-text-editor", (
-        "text/plain", "text/markdown", "text/x-markdown",
+        "text/plain", "text/markdown", "text/x-markdown", "text/x-po",
+        "text/x-gettext-translation", "text/x-gettext-translation-template",
     )),
     ("spreadsheets", _("Spreadsheets"), "libreoffice-calc", (
         "text/csv", "application/vnd.ms-excel",
@@ -714,13 +715,15 @@ class Window():
         # Favorites
         items = self.favorites_manager.get_favorites(None)
         for item in items:
-            if item.cached_mimetype in mime_types and self.uri_is_in_path(item.uri, path):
+            content_type = self.get_uri_content_type(item.uri, item.cached_mimetype)
+            if content_type in mime_types and self.uri_is_in_path(item.uri, path):
                 self.add_document_to_library(item.uri, True)
 
         # Recent
         documents = []
         for recent in self.recent_manager.get_items():
-            if (recent.get_mime_type() in mime_types and
+            content_type = self.get_uri_content_type(recent.get_uri(), recent.get_mime_type())
+            if (content_type in mime_types and
                     self.uri_is_in_path(recent.get_uri(), path)):
                 documents.append(recent)
         documents = sorted(documents, key=lambda x: x.get_modified(), reverse=True)
@@ -728,6 +731,15 @@ class Window():
             self.add_document_to_library(item.get_uri(), False)
 
         self.set_stack_page()
+
+    @staticmethod
+    def get_uri_content_type(uri, fallback=None):
+        try:
+            info = Gio.File.new_for_uri(uri).query_info(
+                "standard::content-type", Gio.FileQueryInfoFlags.NONE, None)
+            return info.get_content_type() or fallback
+        except GLib.Error:
+            return fallback
 
     @staticmethod
     def uri_is_in_path(uri, path):

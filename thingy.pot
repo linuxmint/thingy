@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-22 15:47+0000\n"
+"POT-Creation-Date: 2026-09-05 14:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,47 +17,211 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
+#: usr/lib/thingy/thingy.py:27
+msgid "Favorites"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:30
+msgid "Text Files"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:33
+msgid "PDFs"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:38
+msgid "Books"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:45
+msgid "Documents"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:54
+msgid "Spreadsheets"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:59
+msgid "Presentations"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:64
+msgid "Drawings"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:72
+msgid "Databases"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:76
+msgid "Pictures"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:81
+msgid "Audio"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:84
+msgid "Videos"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:146 usr/lib/thingy/thingy.py:788
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
 msgid "Library"
 msgstr ""
 
-#: usr/lib/thingy/thingy.py:86 usr/lib/thingy/thingy.py:142
+#: usr/lib/thingy/thingy.py:163 usr/lib/thingy/thingy.py:421
+msgid "Groups"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:167
+msgid "Clear Recent Documents"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:172 usr/lib/thingy/thingy.py:786
 msgid "About"
 msgstr ""
 
-#: usr/lib/thingy/thingy.py:91
+#: usr/lib/thingy/thingy.py:177
 msgid "Quit"
 msgstr ""
 
-#: usr/lib/thingy/thingy.py:284
+#: usr/lib/thingy/thingy.py:373 usr/lib/thingy/thingy.py:375
+msgid "No documents found"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:378
+msgid "You can add documents by opening them or by marking them as favorites"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:406
+msgid "Clear all recent documents?"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:409
+msgid "This will clear the history of recent documents for all applications."
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:410
+msgid "Clear"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:424
+msgid "Close"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:450 usr/lib/thingy/thingy.py:706
+#: usr/lib/thingy/thingy.py:762
+msgid "Add"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:451
+msgid "Edit"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:452 usr/lib/thingy/thingy.py:556
+#: usr/lib/thingy/thingy.py:707
+msgid "Remove"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:453
+msgid "Reset to Defaults"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:454
+msgid "Move Up"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:455
+msgid "Move Down"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:494
+msgid "Reset to defaults?"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:496
+msgid "This will reset the group list to defaults and remove custom groups."
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:497
+msgid "Reset"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:555
+#, python-format
+msgid "Remove '%s'?"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:659
+msgid "Group"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:662 usr/lib/thingy/thingy.py:761
+msgid "Cancel"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:663
+msgid "Save"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:675
+msgid "Only include files in this folder"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:676
+msgid "Choose a folder"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:714
+msgid "Choose files to add their types."
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:728
+msgid "Name"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:730
+msgid "Icon"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:732
+msgid "File Types"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:753
+msgid ""
+"Enter a name, add at least one file type, and choose a folder if restricted."
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:758
+msgid "Choose Example Files"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:996
 msgid "Open"
 msgstr ""
 
-#: usr/lib/thingy/thingy.py:287
+#: usr/lib/thingy/thingy.py:999
 msgid "Open containing folder"
 msgstr ""
 
-#: usr/lib/thingy/thingy.py:292
+#: usr/lib/thingy/thingy.py:1004
 msgid "Remove from favorites"
 msgstr ""
 
-#: usr/lib/thingy/thingy.py:295
+#: usr/lib/thingy/thingy.py:1007
 msgid "Add to favorites"
 msgstr ""
 
-#: usr/lib/thingy/thingy.py:299
+#: usr/lib/thingy/thingy.py:1010
+msgid "Remove from recent documents"
+msgstr ""
+
+#: usr/lib/thingy/thingy.py:1015
 msgid "Move to trash"
 msgstr ""
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"
-msgstr ""
-
-#: usr/share/thingy/thingy.ui.h:3
-msgid "No documents found"
-msgstr ""
-
-#: usr/share/thingy/thingy.ui.h:4
-msgid "You can add documents by opening them or by marking them as favorites"
 msgstr ""

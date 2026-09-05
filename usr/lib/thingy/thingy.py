@@ -406,7 +406,7 @@ class Window():
             text=_("Clear all recent documents?"))
         dialog.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
         dialog.format_secondary_text(
-            _("This clears the history of recent documents for all applications."))
+            _("This will clear the history of recent documents for all applications."))
         clear_button = dialog.add_button(_("Clear"), Gtk.ResponseType.OK)
         clear_button.get_style_context().add_class("destructive-action")
         response = dialog.run()
@@ -449,7 +449,7 @@ class Window():
         controls = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
         add_button = self.create_icon_button("list-add-symbolic", _("Add"))
         edit_button = self.create_icon_button("document-edit-symbolic", _("Edit"))
-        delete_button = self.create_icon_button("edit-delete-symbolic", _("Delete"))
+        delete_button = self.create_icon_button("edit-delete-symbolic", _("Remove"))
         reset_button = Gtk.Button.new_with_label(_("Reset to Defaults"))
         up_button = self.create_icon_button("go-up-symbolic", _("Move Up"))
         down_button = self.create_icon_button("go-down-symbolic", _("Move Down"))
@@ -491,9 +491,9 @@ class Window():
             transient_for=parent, modal=True,
             message_type=Gtk.MessageType.QUESTION,
             buttons=Gtk.ButtonsType.CANCEL,
-            text=_("Reset all groups to their defaults?"))
+            text=_("Reset to defaults?"))
         prompt.format_secondary_text(
-            _("This will remove custom groups and restore the default visibility and order."))
+            _("This will reset the group list to defaults and remove custom groups."))
         prompt.add_button(_("Reset"), Gtk.ResponseType.OK)
         response = prompt.run()
         prompt.destroy()
@@ -552,8 +552,8 @@ class Window():
         prompt = Gtk.MessageDialog(transient_for=parent, modal=True,
                                    message_type=Gtk.MessageType.QUESTION,
                                    buttons=Gtk.ButtonsType.CANCEL,
-                                   text=_("Delete “%s”?") % group["name"])
-        prompt.add_button(_("Delete"), Gtk.ResponseType.OK)
+                                   text=_("Remove '%s'?") % group["name"])
+        prompt.add_button(_("Remove"), Gtk.ResponseType.OK)
         response = prompt.run()
         prompt.destroy()
         if response == Gtk.ResponseType.OK:

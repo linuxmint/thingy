@@ -24,35 +24,70 @@ gettext.textdomain(APP)
 _ = gettext.gettext
 
 DOCUMENT_CATEGORIES = [
-    ("books", _("Books"), "xepub", (
-        "application/epub+zip", "application/x-mobipocket-ebook",
-        "application/vnd.amazon.mobi8-ebook", "application/x-fictionbook+xml",
-        "application/x-sony-bbeb",
+    ("favorites", _("Favorites"), "emblem-xapp-favorite", "starred", (
+        "*/*",
     )),
-    ("documents", _("PDFs"), "accessories-document-viewer", (
+    ("text-files", _("Text Files"), "accessories-text-editor", "text-x-generic", (
+        "text/plain", "text/markdown", "text/x-markdown",
+    )),
+    ("documents", _("PDFs"), "xreader", "application-pdf", (
         "application/pdf", "application/postscript", "application/oxps",
         "application/vnd.ms-xpsdocument", "image/vnd.djvu",
-        "image/vnd.djvu+multipage", "application/rtf", "application/msword",
+        "image/vnd.djvu+multipage",
+    )),
+    ("books", _("Books"), "xepub", "application-epub+zip", (
+        "application/epub+zip", "application/x-mobipocket-ebook",
+        "application/vnd.amazon.mobi8-ebook", "application/x-fictionbook+xml",
+        "application/x-sony-bbeb", "application/vnd.comicbook+zip",
+        "application/vnd.comicbook-rar", "application/x-cb7",
+        "application/x-cbt", "application/x-cbr", "application/x-cbz",
+    )),
+    ("writer-documents", _("Documents"), "libreoffice-writer", "x-office-document", (
+        "application/rtf", "text/rtf", "application/msword",
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.template",
+        "application/vnd.ms-word.document.macroEnabled.12",
         "application/vnd.oasis.opendocument.text",
+        "application/vnd.oasis.opendocument.text-template",
+        "application/vnd.oasis.opendocument.text-flat-xml",
     )),
-    ("text-files", _("Text Files"), "accessories-text-editor", (
-        "text/plain", "text/markdown", "text/x-markdown", "text/x-po",
-        "text/x-gettext-translation", "text/x-gettext-translation-template",
-    )),
-    ("spreadsheets", _("Spreadsheets"), "libreoffice-calc", (
+    ("spreadsheets", _("Spreadsheets"), "libreoffice-calc", "x-office-spreadsheet", (
         "text/csv", "application/vnd.ms-excel",
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         "application/vnd.oasis.opendocument.spreadsheet",
     )),
-    ("presentations", _("Presentations"), "libreoffice-impress", (
+    ("presentations", _("Presentations"), "libreoffice-impress", "x-office-presentation", (
         "application/vnd.ms-powerpoint",
         "application/vnd.openxmlformats-officedocument.presentationml.presentation",
         "application/vnd.oasis.opendocument.presentation",
-    ))
+    )),
+    ("drawings", _("Drawings"), "libreoffice-draw", "x-office-drawing", (
+        "application/vnd.oasis.opendocument.graphics",
+        "application/vnd.oasis.opendocument.graphics-template",
+        "application/vnd.oasis.opendocument.graphics-flat-xml",
+        "application/vnd.sun.xml.draw",
+        "application/vnd.sun.xml.draw.template",
+        "application/vnd.stardivision.draw",
+    )),
+    ("databases", _("Databases"), "libreoffice-base", "application-vnd.oasis.opendocument.database", (
+        "application/vnd.oasis.opendocument.database",
+        "application/vnd.sun.xml.base",
+    )),
+    ("pictures", _("Pictures"), "xviewer", "image-x-generic", (
+        "image/jpeg", "image/png", "image/gif", "image/webp", "image/tiff",
+        "image/bmp", "image/svg+xml", "image/heif", "image/avif",
+        "image/x-xcf", "image/x-canon-cr2", "image/x-nikon-nef",
+    )),
+    ("audio", _("Audio"), "rhythmbox", "audio-x-generic", (
+        "audio/*",
+    )),
+    ("videos", _("Videos"), "io.github.celluloid_player.Celluloid", "video-x-generic", (
+        "video/*",
+    )),
 ]
 
 DEFAULT_GROUP_ICON = "text-x-generic"
+DEFAULT_HIDDEN_GROUPS = ["drawings", "presentations", "databases"]
 
 # Used as a decorator to run things in the background
 def _async(func):
@@ -125,8 +160,8 @@ class Window():
         self.window.add_accel_group(accel_group)
         menu = self.builder.get_object("main_menu")
         item = Gtk.MenuItem()
-        item.set_label(_("Preferences"))
-        item.connect("activate", self.open_preferences)
+        item.set_label(_("Groups"))
+        item.connect("activate", self.open_groups)
         menu.append(item)
         menu.append(Gtk.SeparatorMenuItem())
         item = Gtk.MenuItem()
@@ -170,7 +205,7 @@ class Window():
         self.favorites_manager.connect("changed", self.load_documents)
 
     def load_groups_config(self):
-        default = {"hidden_builtin_groups": [], "custom_groups": [], "group_order": []}
+        default = self.default_groups_config()
         try:
             with open(self.groups_path, encoding="utf-8") as config_file:
                 config = json.load(config_file)
@@ -188,9 +223,19 @@ class Window():
         valid_ids = [category[0] for category in DOCUMENT_CATEGORIES]
         valid_ids.extend("custom-" + group["id"] for group in default["custom_groups"])
         default["group_order"] = [item for item in default["group_order"] if item in valid_ids]
+        if "favorites" not in default["group_order"]:
+            default["group_order"].insert(0, "favorites")
         default["group_order"].extend(item for item in valid_ids
                                       if item not in default["group_order"])
         return default
+
+    @staticmethod
+    def default_groups_config():
+        return {
+            "hidden_builtin_groups": list(DEFAULT_HIDDEN_GROUPS),
+            "custom_groups": [],
+            "group_order": [category[0] for category in DOCUMENT_CATEGORIES],
+        }
 
     @staticmethod
     def valid_custom_group(group):
@@ -221,8 +266,11 @@ class Window():
 
         self.categories = {}
         hidden = self.groups_config["hidden_builtin_groups"]
-        available = {category_id: (title, icon, mime_types, None)
-                     for category_id, title, icon, mime_types in DOCUMENT_CATEGORIES}
+        available = {
+            category_id: (title, self.get_standard_icon(icon, fallback_icon),
+                          mime_types, None)
+            for category_id, title, icon, fallback_icon, mime_types in DOCUMENT_CATEGORIES
+        }
         for group in self.groups_config["custom_groups"]:
             icon = self.get_sidebar_icon(group["icon"])
             available["custom-" + group["id"]] = (group["name"], icon,
@@ -243,6 +291,13 @@ class Window():
         self.categories[category_id] = (mime_types, path, flowbox, content_stack)
         self.app_stack.add_titled(page, category_id, title)
         self.app_stack.child_set_property(page, "icon-name", icon)
+
+    @staticmethod
+    def get_standard_icon(icon, fallback_icon):
+        icon_theme = Gtk.IconTheme.get_default()
+        if icon_theme is not None and icon_theme.has_icon(icon):
+            return icon
+        return fallback_icon
 
     @staticmethod
     def get_sidebar_icon(icon):
@@ -339,8 +394,8 @@ class Window():
         self.settings.set_int("height", self.height)
         self.settings.set_boolean("maximized", self.maximized)
 
-    def open_preferences(self, widget):
-        dialog = Gtk.Dialog(title=_("Preferences"), transient_for=self.window,
+    def open_groups(self, widget):
+        dialog = Gtk.Dialog(title=_("Groups"), transient_for=self.window,
                             modal=True, destroy_with_parent=True)
         dialog.add_button(_("Close"), Gtk.ResponseType.CLOSE)
         dialog.set_default_size(560, 480)
@@ -371,6 +426,7 @@ class Window():
         add_button = Gtk.Button.new_with_label(_("Add"))
         edit_button = Gtk.Button.new_with_label(_("Edit"))
         delete_button = Gtk.Button.new_with_label(_("Delete"))
+        reset_button = Gtk.Button.new_with_label(_("Reset to Defaults"))
         up_button = Gtk.Button.new_with_label(_("Move Up"))
         down_button = Gtk.Button.new_with_label(_("Move Down"))
         edit_button.set_sensitive(False)
@@ -380,6 +436,7 @@ class Window():
         controls.pack_start(add_button, False, False, 0)
         controls.pack_start(edit_button, False, False, 0)
         controls.pack_start(delete_button, False, False, 0)
+        controls.pack_end(reset_button, False, False, 0)
         controls.pack_end(down_button, False, False, 0)
         controls.pack_end(up_button, False, False, 0)
         content.pack_start(controls, False, False, 0)
@@ -391,14 +448,32 @@ class Window():
         add_button.connect("clicked", self.add_custom_group, dialog, group_list)
         edit_button.connect("clicked", self.edit_custom_group, dialog, group_list)
         delete_button.connect("clicked", self.delete_custom_group, dialog, group_list)
+        reset_button.connect("clicked", self.reset_groups, dialog, group_list)
         up_button.connect("clicked", self.move_group, group_list, -1)
         down_button.connect("clicked", self.move_group, group_list, 1)
-        self.preferences_group_list = group_list
         self.refresh_group_list(group_list)
         dialog.show_all()
         dialog.run()
         dialog.destroy()
-        self.preferences_group_list = None
+
+    def reset_groups(self, button, parent, listbox):
+        prompt = Gtk.MessageDialog(
+            transient_for=parent, modal=True,
+            message_type=Gtk.MessageType.QUESTION,
+            buttons=Gtk.ButtonsType.CANCEL,
+            text=_("Reset all groups to their defaults?"))
+        prompt.format_secondary_text(
+            _("This will remove custom groups and restore the default visibility and order."))
+        prompt.add_button(_("Reset"), Gtk.ResponseType.OK)
+        response = prompt.run()
+        prompt.destroy()
+        if response == Gtk.ResponseType.OK:
+            self.groups_config = self.default_groups_config()
+            self.save_groups_config()
+            self.rebuild_categories()
+            self.refresh_group_list(listbox)
+            if self.categories:
+                self.load_documents()
 
     def on_builtin_group_toggled(self, switch, param, category_id):
         hidden = self.groups_config["hidden_builtin_groups"]
@@ -457,9 +532,9 @@ class Window():
             self.groups_changed(listbox)
 
     def group_details(self, group_id):
-        for category_id, title, icon, unused_mime_types in DOCUMENT_CATEGORIES:
+        for category_id, title, icon, fallback_icon, unused_mime_types in DOCUMENT_CATEGORIES:
             if category_id == group_id:
-                return title, icon, None
+                return title, self.get_standard_icon(icon, fallback_icon), None
         if group_id.startswith("custom-"):
             group = self.get_custom_group(group_id[len("custom-"):])
             if group:
@@ -709,6 +784,7 @@ class Window():
         if category_id not in self.categories:
             return
         mime_types, path, self.flowbox, self.content_stack = self.categories[category_id]
+        favorites_only = category_id == "favorites"
         self.documents = []
         self.clear_flowbox()
 
@@ -716,21 +792,34 @@ class Window():
         items = self.favorites_manager.get_favorites(None)
         for item in items:
             content_type = self.get_uri_content_type(item.uri, item.cached_mimetype)
-            if content_type in mime_types and self.uri_is_in_path(item.uri, path):
+            if (self.content_type_matches(content_type, mime_types) and
+                    self.uri_is_in_path(item.uri, path)):
                 self.add_document_to_library(item.uri, True)
 
         # Recent
         documents = []
-        for recent in self.recent_manager.get_items():
-            content_type = self.get_uri_content_type(recent.get_uri(), recent.get_mime_type())
-            if (content_type in mime_types and
-                    self.uri_is_in_path(recent.get_uri(), path)):
-                documents.append(recent)
+        if not favorites_only:
+            for recent in self.recent_manager.get_items():
+                content_type = self.get_uri_content_type(recent.get_uri(), recent.get_mime_type())
+                if (self.content_type_matches(content_type, mime_types) and
+                        self.uri_is_in_path(recent.get_uri(), path)):
+                    documents.append(recent)
         documents = sorted(documents, key=lambda x: x.get_modified(), reverse=True)
         for item in documents:
             self.add_document_to_library(item.get_uri(), False)
 
         self.set_stack_page()
+
+    @staticmethod
+    def content_type_matches(content_type, mime_types):
+        if "*/*" in mime_types:
+            return True
+        if not content_type:
+            return False
+        return any(content_type == pattern or
+                   (pattern.endswith("/*") and
+                    content_type.startswith(pattern[:-1]))
+                   for pattern in mime_types)
 
     @staticmethod
     def get_uri_content_type(uri, fallback=None):

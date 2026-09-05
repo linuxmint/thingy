@@ -1,3 +1,14 @@
+thingy (1.2.6) alfa; urgency=medium
+
+  [ Balló György ]
+  * Set prgname to application ID (#23)
+  * Set license type on about dialog (#22)
+
+  [ Clement Lefebvre ]
+  * Remember active group
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sat, 05 Sep 2026 14:57:20 +0100
+
 thingy (1.2.5) alfa; urgency=medium
 
   [ Michael Webster ]

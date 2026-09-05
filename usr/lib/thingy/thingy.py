@@ -185,13 +185,12 @@ class Window():
         self.width = self.settings.get_int("width")
         self.height = self.settings.get_int("height")
         self.maximized = self.settings.get_boolean("maximized")
-        self.window.resize(self.width, self.height)
         if self.maximized:
             self.window.maximize()
         else:
             self.window.resize(self.width, self.height)
 
-        self.window.connect("size-allocate", self.on_window_resized)
+        self.window.connect("configure-event", self.on_window_resized)
         self.window.connect("window-state-event", self.on_window_state_changed)
         self.window.connect("destroy", self.on_window_destroyed)
 
@@ -382,9 +381,10 @@ class Window():
         page.show_all()
         return page, flowbox, content_stack
 
-    def on_window_resized(self, window, allocation):
-        self.width = allocation.width
-        self.height = allocation.height
+    def on_window_resized(self, window, event):
+        if not self.maximized:
+            self.width, self.height = window.get_size()
+        return False
 
     def on_window_state_changed(self, window, event):
         self.maximized = window.get_window().get_state() & Gdk.WindowState.MAXIMIZED == Gdk.WindowState.MAXIMIZED
@@ -397,6 +397,7 @@ class Window():
     def open_groups(self, widget):
         dialog = Gtk.Dialog(title=_("Groups"), transient_for=self.window,
                             modal=True, destroy_with_parent=True)
+        dialog.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
         dialog.add_button(_("Close"), Gtk.ResponseType.CLOSE)
         dialog.set_default_size(560, 480)
         dialog.set_resizable(True)
@@ -634,6 +635,7 @@ class Window():
     def run_group_editor(self, parent, group=None):
         dialog = Gtk.Dialog(title=_("Group"),
                             transient_for=parent, modal=True, destroy_with_parent=True)
+        dialog.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
         dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
         dialog.add_button(_("Save"), Gtk.ResponseType.OK)
         dialog.set_default_response(Gtk.ResponseType.OK)

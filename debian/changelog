@@ -1,3 +1,23 @@
+thingy (1.2.5) alfa; urgency=medium
+
+  [ Michael Webster ]
+  * .github/workflows: Add generate-test-packages trigger.
+
+  [ Clement Lefebvre ]
+  * Add support for xepub
+  * ui: Move to an xapp sidebar
+  * Switch from an app-centric to a mime-centric design
+  * Add the ability to remove docs from recents
+  * Add custom categories and preferences dialog
+  * Improve mimetype detection
+  * Define default groups
+  * Make the group dialog better looking
+  * Center window, fix dimensions restoration
+  * menu: Add an item to clear all recent documents
+  * l10n: Update POT
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sat, 05 Sep 2026 14:47:54 +0100
+
 thingy (1.2.4) zena; urgency=medium
 
   [ hduelme ]

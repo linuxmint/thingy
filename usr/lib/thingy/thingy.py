@@ -217,12 +217,12 @@ class Window():
         try:
             with open(self.groups_path, encoding="utf-8") as config_file:
                 config = json.load(config_file)
-            hidden = config.get("hidden_builtin_groups", [])
+            hidden = config.get("hidden_groups", [])
             custom = config.get("custom_groups", [])
             order = config.get("group_order", [])
             if not all(isinstance(value, list) for value in (hidden, custom, order)):
                 raise ValueError("Invalid document groups configuration")
-            default["hidden_builtin_groups"] = [item for item in hidden if isinstance(item, str)]
+            default["hidden_groups"] = [item for item in hidden if isinstance(item, str)]
             default["custom_groups"] = [item for item in custom if self.valid_custom_group(item)]
             default["group_order"] = [item for item in order if isinstance(item, str)]
             active_group = config.get("active_group")
@@ -233,6 +233,8 @@ class Window():
                 print("Could not load document groups: %s" % e)
         valid_ids = [category[0] for category in DOCUMENT_CATEGORIES]
         valid_ids.extend("custom-" + group["id"] for group in default["custom_groups"])
+        default["hidden_groups"] = [item for item in default["hidden_groups"]
+                                    if item in valid_ids]
         default["group_order"] = [item for item in default["group_order"] if item in valid_ids]
         if "favorites" not in default["group_order"]:
             default["group_order"].insert(0, "favorites")
@@ -245,7 +247,7 @@ class Window():
     @staticmethod
     def default_groups_config():
         return {
-            "hidden_builtin_groups": list(DEFAULT_HIDDEN_GROUPS),
+            "hidden_groups": list(DEFAULT_HIDDEN_GROUPS),
             "custom_groups": [],
             "group_order": [category[0] for category in DOCUMENT_CATEGORIES],
             "active_group": "favorites",
@@ -280,7 +282,7 @@ class Window():
             self.app_stack.remove(child)
 
         self.categories = {}
-        hidden = self.groups_config["hidden_builtin_groups"]
+        hidden = self.groups_config["hidden_groups"]
         available = {
             category_id: (title, self.get_standard_icon(icon, fallback_icon),
                           mime_types, None)
@@ -517,8 +519,8 @@ class Window():
             if self.categories:
                 self.load_documents()
 
-    def on_builtin_group_toggled(self, switch, param, category_id):
-        hidden = self.groups_config["hidden_builtin_groups"]
+    def on_group_toggled(self, switch, param, category_id):
+        hidden = self.groups_config["hidden_groups"]
         if switch.get_active() and category_id in hidden:
             hidden.remove(category_id)
         elif not switch.get_active() and category_id not in hidden:
@@ -570,7 +572,10 @@ class Window():
         prompt.destroy()
         if response == Gtk.ResponseType.OK:
             self.groups_config["custom_groups"].remove(group)
-            self.groups_config["group_order"].remove("custom-" + group["id"])
+            group_id = "custom-" + group["id"]
+            self.groups_config["group_order"].remove(group_id)
+            if group_id in self.groups_config["hidden_groups"]:
+                self.groups_config["hidden_groups"].remove(group_id)
             self.groups_changed(listbox)
 
     def group_details(self, group_id):
@@ -616,11 +621,10 @@ class Window():
                 detail_label.get_style_context().add_class("dim-label")
                 labels.pack_start(detail_label, False, False, 0)
             box.pack_start(labels, True, True, 0)
-            if custom_group is None:
-                switch = Gtk.Switch(valign=Gtk.Align.CENTER)
-                switch.set_active(group_id not in self.groups_config["hidden_builtin_groups"])
-                switch.connect("notify::active", self.on_builtin_group_toggled, group_id)
-                box.pack_end(switch, False, False, 0)
+            switch = Gtk.Switch(valign=Gtk.Align.CENTER)
+            switch.set_active(group_id not in self.groups_config["hidden_groups"])
+            switch.connect("notify::active", self.on_group_toggled, group_id)
+            box.pack_end(switch, False, False, 0)
             row.add(box)
             listbox.add(row)
             if group_id == selected_id:

@@ -609,18 +609,7 @@ class Window():
             box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
             box.set_border_width(8)
             box.pack_start(self.create_group_icon(icon), False, False, 0)
-            labels = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2)
-            labels.pack_start(Gtk.Label(label=title, xalign=0), False, False, 0)
-            if custom_group:
-                detail = ", ".join(self.format_content_type(mime_type)
-                                   for mime_type in custom_group["mime_types"])
-                if custom_group.get("path"):
-                    detail += " — " + custom_group["path"]
-                detail_label = Gtk.Label(label=detail, xalign=0)
-                detail_label.set_ellipsize(Pango.EllipsizeMode.END)
-                detail_label.get_style_context().add_class("dim-label")
-                labels.pack_start(detail_label, False, False, 0)
-            box.pack_start(labels, True, True, 0)
+            box.pack_start(Gtk.Label(label=title, xalign=0), True, True, 0)
             switch = Gtk.Switch(valign=Gtk.Align.CENTER)
             switch.set_active(group_id not in self.groups_config["hidden_groups"])
             switch.connect("notify::active", self.on_group_toggled, group_id)

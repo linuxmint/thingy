@@ -1,0 +1,7 @@
+debian/thingy
+debian/.debhelper
+debian/files
+*.mo
+*.substvars
+*__pycache__*
+debian/*debhelper*

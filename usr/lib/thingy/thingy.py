@@ -11,7 +11,8 @@ import threading
 import uuid
 gi.require_version('Gtk', '3.0')
 gi.require_version('XApp', '1.0')
-from gi.repository import Gtk, Gio, GLib, XApp, Pango, GdkPixbuf, Gdk
+gi.require_version('GnomeDesktop', '3.0')
+from gi.repository import Gtk, Gio, GLib, XApp, Pango, GdkPixbuf, Gdk, GnomeDesktop
 
 setproctitle.setproctitle("thingy")
 
@@ -138,6 +139,8 @@ class Window():
 
         self.recent_manager = Gtk.RecentManager()
         self.favorites_manager = XApp.Favorites.get_default()
+        self.thumbnail_factory = GnomeDesktop.DesktopThumbnailFactory.new(
+            GnomeDesktop.DesktopThumbnailSize.LARGE)
 
         # Set the Glade file
         gladefile = "/usr/share/thingy/thingy.ui"
@@ -908,7 +911,9 @@ class Window():
         info = f.query_info('*', Gio.FileQueryInfoFlags.NONE, None)
         self.documents.append(real_path)
         name = info.get_display_name()
-        thumbnail_path = info.get_attribute_byte_string ("thumbnail::path")
+        mtime = info.get_attribute_uint64("time::modified")
+        thumbnail_path = (self.thumbnail_factory.lookup(f.get_uri(), mtime) or
+                          info.get_attribute_byte_string ("thumbnail::path"))
         icon = info.get_attribute_object("standard::icon")
         current_page = info.get_attribute_string("metadata::xreader::page")
         num_pages = info.get_attribute_string("metadata::xreader::num-pages")

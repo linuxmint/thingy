@@ -1,3 +1,13 @@
+thingy (1.2.7) alfa; urgency=medium
+
+  * Use large thumbnails by default
+  * Fix content type detection for icon fallback
+  * Add .gitignore
+  * Allow custom groups to be hidden
+  * Groups: Don't show mimetypes in listview
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue, 08 Sep 2026 11:14:28 +0100
+
 thingy (1.2.6) alfa; urgency=medium
 
   [ Balló György ]

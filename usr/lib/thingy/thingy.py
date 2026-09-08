@@ -976,8 +976,11 @@ class Window():
             pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(thumbnail_path, 198, 198)
         else:
             extension = os.path.splitext(uri)[1][1:].strip().lower()
-            if os.path.exists("/usr/share/thingy/doc-%s.svg" % extension):
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size("/usr/share/thingy/doc-%s.svg" % extension, 198, 198)
+            fallback_path = "/usr/share/thingy/doc-%s.svg" % extension
+            if info.get_content_type().startswith("text/"):
+                fallback_path = "/usr/share/thingy/doc-txt.svg"
+            if os.path.exists(fallback_path):
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(fallback_path, 198, 198)
             else:
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size("/usr/share/thingy/doc.svg", 198, 198)
 

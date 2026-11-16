@@ -8,14 +8,15 @@ msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2025-05-01 18:56+0000\n"
-"Last-Translator: Eloi Barcón Piñeiro <Unknown>\n"
+"PO-Revision-Date: 2026-11-01 12:16+0000\n"
+"Last-Translator: Calq Calquera <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2025-12-12 13:33+0000\n"
-"X-Generator: Launchpad (build 379e22b8475e3402088a4cdb4a6e7936a4d28414)\n"
+"X-Launchpad-Export-Date: 2026-11-16 12:01+0000\n"
+"X-Generator: Launchpad (build 72ba15af7e009b17d4aa1467977127ac8392a4de)\n"
+"Language: gl\n"
 
 #: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
@@ -36,7 +37,7 @@ msgstr "Abrir"
 
 #: usr/lib/thingy/thingy.py:287
 msgid "Open containing folder"
-msgstr ""
+msgstr "Abrir o cartafol que contén o ficheiro"
 
 #: usr/lib/thingy/thingy.py:292
 msgid "Remove from favorites"
@@ -48,7 +49,7 @@ msgstr "Engadir a favoritos"
 
 #: usr/lib/thingy/thingy.py:299
 msgid "Move to trash"
-msgstr "Mover ao lixo"
+msgstr "Mover á papeleira"
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"

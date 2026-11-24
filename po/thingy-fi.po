@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2021-11-22 15:47+0000\n"
-"PO-Revision-Date: 2021-11-25 21:25+0000\n"
-"Last-Translator: Kimmo Kujansuu <Unknown>\n"
+"PO-Revision-Date: 2026-11-17 14:28+0000\n"
+"Last-Translator: Hiiri522 <hhiiri522@gmail.com>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2026-11-16 12:01+0000\n"
-"X-Generator: Launchpad (build 72ba15af7e009b17d4aa1467977127ac8392a4de)\n"
+"X-Launchpad-Export-Date: 2026-11-24 12:01+0000\n"
+"X-Generator: Launchpad (build 012091084314157d19ae714f55ef4c582ff0feb5)\n"
 
 #: usr/lib/thingy/thingy.py:78 usr/lib/thingy/thingy.py:144
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:1
@@ -24,11 +24,11 @@ msgstr "Kirjasto"
 
 #: usr/lib/thingy/thingy.py:86 usr/lib/thingy/thingy.py:142
 msgid "About"
-msgstr "Tietoja"
+msgstr "Lisätietoa"
 
 #: usr/lib/thingy/thingy.py:91
 msgid "Quit"
-msgstr "Sulje"
+msgstr "Lopeta"
 
 #: usr/lib/thingy/thingy.py:284
 msgid "Open"
@@ -36,7 +36,7 @@ msgstr "Avaa"
 
 #: usr/lib/thingy/thingy.py:287
 msgid "Open containing folder"
-msgstr "Avaa tiedoston sisältävä kansio"
+msgstr "Avaa tiedostosijainti"
 
 #: usr/lib/thingy/thingy.py:292
 msgid "Remove from favorites"
@@ -52,7 +52,7 @@ msgstr "Siirrä roskakoriin"
 
 #: generate_desktop_files:25 usr/share/thingy/thingy.ui.h:2
 msgid "Recent and favorite documents"
-msgstr "Edelliset ja suositut asiakirjat"
+msgstr "Viimeisimmät ja tähdellä merkityt asiakirjat"
 
 #: usr/share/thingy/thingy.ui.h:3
 msgid "No documents found"
@@ -60,5 +60,4 @@ msgstr "Asiakirjoja ei löytynyt"
 
 #: usr/share/thingy/thingy.ui.h:4
 msgid "You can add documents by opening them or by marking them as favorites"
-msgstr ""
-"Voit lisätä asiakirjoja avaamalla niitä tai merkitsemällä suosikeiksi"
+msgstr "Voit lisätä asiakirjoja avaamalla ne tai merkitsemällä ne tähdellä"

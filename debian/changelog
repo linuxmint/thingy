@@ -1,3 +1,10 @@
+thingy (1.2.9) adrien; urgency=medium
+
+  * l10n: Update translations
+  * l10n: Update files
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue, 24 Nov 2026 16:30:27 +0000
+
 thingy (1.2.8) adrien; urgency=medium
 
   * l10n: Update translations
